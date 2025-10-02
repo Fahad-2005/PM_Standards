@@ -25,29 +25,79 @@
       font-size: 1.1rem;
       opacity: 0.9;
     }
-
-    /* --- SEARCH BAR --- */
     .search-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
-    .search-container input {
+    #searchInput {
+      padding: 0.8rem;
       width: 80%;
-      max-width: 500px;
-      padding: 0.8rem 1rem;
-      border-radius: 25px;
+      max-width: 400px;
       border: none;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      border-radius: 25px;
       outline: none;
-      transition: box-shadow 0.3s;
-    }
-    .search-container input:focus {
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      font-size: 1rem;
     }
 
-    /* --- DASHBOARD --- */
+    /* --- SIDEBAR --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 300px; /* Increased width */
+      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Gradient background */
+      padding: 2rem;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      color: #fff; /* White text for better contrast */
+      overflow-y: auto; /* Enable vertical scrolling */
+    }
+    .sidebar::-webkit-scrollbar {
+      width: 8px; /* Custom scrollbar width */
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #2a5298; /* Scrollbar thumb color */
+      border-radius: 4px;
+    }
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: #1e3c72; /* Scrollbar thumb hover color */
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: #fff; /* White close button */
+    }
+    .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0;
+    }
+    .sidebar nav ul li {
+      margin: 1rem 0;
+    }
+    .sidebar nav ul li a {
+      text-decoration: none;
+      color: #f0f0f0; /* Slightly lighter text color */
+      font-weight: 500;
+      font-size: 1.1rem; /* Slightly larger font size */
+      transition: color 0.3s, transform 0.3s;
+    }
+    .sidebar nav ul li a:hover {
+      color: #ffcc00; /* Highlight color on hover */
+      transform: translateX(5px); /* Subtle movement on hover */
+    }
+
+    /* --- MAIN CONTENT --- */
     .dashboard {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -55,30 +105,24 @@
       padding: 2rem;
       max-width: 1200px;
       margin: auto;
+      margin-top: 0;
     }
-    .card {
-      background: #fff;
+    .book-box {
+      background: #f7f7f9;
       padding: 2rem;
       border-radius: 1rem;
       text-align: center;
       font-weight: 600;
       color: #2a2a2a;
-      text-decoration: none;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s forwards;
     }
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-    .card:nth-child(5) { animation-delay: 0.5s; }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
+    .book-box:nth-child(1) { animation-delay: 0.1s; }
+    .book-box:nth-child(2) { animation-delay: 0.2s; }
+    .book-box:nth-child(3) { animation-delay: 0.3s; }
 
     @keyframes fadeInUp {
       to {
@@ -94,6 +138,27 @@
       font-size: 0.9rem;
       color: #555;
     }
+
+    /* --- BUTTONS --- */
+    .open-btn {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: #1e3c72;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 1100;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .open-btn:hover {
+      background: #2a5298;
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -105,22 +170,35 @@
     </div>
   </header>
 
-  <main class="dashboard" id="dashboard">
-    <a href="introduction.html" class="card">Introduction & Project Management Frameworks</a>
-    <a href="governance.html" class="card">Project Governance & Roles</a>
-    <a href="tailoring.html" class="card">Tailoring & Contextualization</a>
-    <a href="businesscase.html" class="card">Business Case & Benefits Realization</a>
-    <a href="lifecycle.html" class="card">Project Life Cycle & Development</a>
-    <a href="planning.html" class="card">Planning Approaches & Plan Hierarchy</a>
-    <a href="scope.html" class="card">Scope & Deliverables Definition</a>
-    <a href="scheduling.html" class="card">Scheduling & Time Management</a>
-    <a href="resources.html" class="card">Resource & Cost Management</a>
-    <a href="quality.html" class="card">Quality Management</a>
-    <a href="risk.html" class="card">Risk & Issue Management</a>
-    <a href="closure.html" class="card">Project Closure, Lessons Learned & Continual Improvement</a>
-    <a href="change.html" class="card">Change Control & Configuration Management</a>
-    <a href="stakeholders.html" class="card">Stakeholder Engagement & Communication</a>
-    <a href="team.html" class="card">Team Management, Leadership & Culture</a>
+  <aside id="sidebar" class="sidebar">
+    <button id="closeSidebar" class="close-btn">×</button>
+    <nav>
+      <ul>
+        <li><a href="introduction.html">Introduction & Project Management Frameworks</a></li>
+        <li><a href="governance.html">Project Governance & Roles</a></li>
+        <li><a href="tailoring.html">Tailoring & Contextualization</a></li>
+        <li><a href="businesscase.html">Business Case & Benefits Realization</a></li>
+        <li><a href="lifecycle.html">Project Life Cycle & Development</a></li>
+        <li><a href="planning.html">Planning Approaches & Plan Hierarchy</a></li>
+        <li><a href="scope.html">Scope & Deliverables Definition</a></li>
+        <li><a href="scheduling.html">Scheduling & Time Management</a></li>
+        <li><a href="resources.html">Resource & Cost Management</a></li>
+        <li><a href="quality.html">Quality Management</a></li>
+        <li><a href="risk.html">Risk & Issue Management</a></li>
+        <li><a href="closure.html">Project Closure, Lessons Learned & Continual Improvement</a></li>
+        <li><a href="change.html">Change Control & Configuration Management</a></li>
+        <li><a href="stakeholders.html">Stakeholder Engagement & Communication</a></li>
+        <li><a href="team.html">Team Management, Leadership & Culture</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <button id="openSidebar" class="open-btn">☰ Topics</button>
+
+  <main class="dashboard">
+    <div class="book-box">PMBOK 7</div>
+    <div class="book-box">PRINCE2</div>
+    <div class="book-box">ISO Standards</div>
   </main>
 
   <footer>
@@ -130,14 +208,27 @@
   <script>
     // --- SEARCH FUNCTIONALITY ---
     const searchInput = document.getElementById("searchInput");
-    const cards = document.querySelectorAll(".card");
+    const links = document.querySelectorAll(".sidebar nav ul li a");
 
-    searchInput.addEventListener("keyup", function() {
+    searchInput.addEventListener("keyup", function () {
       const filter = searchInput.value.toLowerCase();
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = text.includes(filter) ? "block" : "none";
+      links.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        link.parentElement.style.display = text.includes(filter) ? "block" : "none";
       });
+    });
+
+    // --- SIDEBAR FUNCTIONALITY ---
+    const sidebar = document.getElementById("sidebar");
+    const openSidebar = document.getElementById("openSidebar");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    openSidebar.addEventListener("click", () => {
+      sidebar.style.transform = "translateX(0)";
+    });
+
+    closeSidebar.addEventListener("click", () => {
+      sidebar.style.transform = "translateX(-100%)";
     });
   </script>
 </body>
