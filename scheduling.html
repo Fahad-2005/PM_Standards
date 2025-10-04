@@ -3,51 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Scheduling & Time Management</title>
+  <title>Scheduling & Time Management - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .comparison-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .standard-column {
+      background: var(--card-surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-stroke);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    .pmbok-column { border-left: 4px solid #2563eb; }
+    .prince2-column { border-left: 4px solid #16a34a; }
+    .iso-column { border-left: 4px solid #ea580c; }
+    
+    .standard-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .standard-header h3 {
+      margin: 0 0 0 0.5rem;
+      color: var(--accent);
+    }
+    
+    .key-points {
+      margin: 1rem 0;
+    }
+    
+    .key-points h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .key-points ul {
+      margin-left: 1rem;
+      color: var(--text);
+    }
+    
+    .comparison-summary {
+      background: var(--highlight-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Scheduling & Time Management</h1>
+    <h1>⏰ Scheduling & Time Management</h1>
     <p>Dependencies, milestones, critical path, iterative timelines</p>
   </header>
 
   <main>
-    <section class="grid" aria-label="Scheduling comparison">
-      <div class="box" data-animate>
-        <h2>📘 PMBOK</h2>
-        <p>PMBOK provides detailed scheduling processes including defining activities, sequencing, estimating durations, developing and controlling schedules using techniques like critical path and iteration planning.</p>
+    <div class="comparison-container">
+      <div class="standard-column pmbok-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📘</span>
+          <h3>PMBOK 7 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Schedule as delivery enabler</li>
+            <li>Adaptive scheduling approaches</li>
+            <li>Value-driven time management</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Performance domain integration</li>
+            <li>Adaptive scheduling techniques</li>
+            <li>Value-focused time decisions</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="box" data-animate>
-        <h2>📗 PRINCE2</h2>
-        <p>PRINCE2 links schedules to product delivery. Stage and team plans define timeframes with milestones and tolerances; deviations are managed through exception processes.</p>
+      <div class="standard-column prince2-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📗</span>
+          <h3>PRINCE2 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Product-driven scheduling</li>
+            <li>Stage-based time control</li>
+            <li>Tolerance-based management</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Stage-based scheduling hierarchy</li>
+            <li>Tolerance-driven control</li>
+            <li>Product delivery focus</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="box" data-animate>
-        <h2>📙 ISO</h2>
-        <p>ISO defines scheduling as planning, sequencing, and controlling activities within life cycle phases, ensuring alignment with governance milestones and decision points.</p>
+      <div class="standard-column iso-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📙</span>
+          <h3>ISO 21500 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Lifecycle-aligned scheduling</li>
+            <li>Governance milestone integration</li>
+            <li>Systematic time management</li>
+          </ul>
+        </div>
+        
+       
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Governance-driven milestones</li>
+            <li>Organizational schedule alignment</li>
+            <li>High-level scheduling guidance</li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section class="grid">
-      <div class="box highlight" data-animate>
-        <h2>✅ Similarities</h2>
-        <ul>
-          <li>All three emphasize clear sequencing, milestones, and control.</li>
-          <li>Schedules integrate with planning hierarchy and governance decisions.</li>
-        </ul>
+    <div class="comparison-summary">
+      <h3>🔍 Comparative Analysis</h3>
+      
+      <div class="grid">
+        <div class="box">
+          <h4>🤝 Similarities</h4>
+          <ul>
+            <li>Clear sequencing and milestone control</li>
+            <li>Schedule integration with planning hierarchy</li>
+            <li>Progress monitoring and control emphasis</li>
+            <li>Governance decision point alignment</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>⚡ Key Differences</h4>
+          <ul>
+            <li><strong>Techniques:</strong> PMBOK (detailed), PRINCE2 (stage-based), ISO (high-level)</li>
+            <li><strong>Control:</strong> PMBOK (adaptive), PRINCE2 (tolerance), ISO (governance)</li>
+            <li><strong>Focus:</strong> PMBOK (value), PRINCE2 (products), ISO (organization)</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>🎯 Best Use Cases</h4>
+          <ul>
+            <li><strong>PMBOK:</strong> Complex scheduling requirements</li>
+            <li><strong>PRINCE2:</strong> Stage-controlled projects</li>
+            <li><strong>ISO:</strong> Governance-driven scheduling</li>
+          </ul>
+        </div>
       </div>
+    </div>
 
-      <div class="box highlight" data-animate>
-        <h2>⚖️ Differences</h2>
-        <ul>
-          <li>PMBOK gives detailed scheduling techniques; PRINCE2 focuses on stage-based control; ISO integrates scheduling with governance checkpoints.</li>
-        </ul>
-      </div>
-    </section>
-
-    <a class="back-btn" href="home.html">⬅ Back to Dashboard</a>
+    <div class="back-btn-wrapper">
+      <a href="home.html" class="back-btn">← Back to Home</a>
+    </div>
   </main>
 </body>
 </html>
