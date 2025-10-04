@@ -14,6 +14,7 @@
       padding: 2rem 1rem 1rem;
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
+      position: relative;
     }
     header h1 {
       margin: 0;
@@ -38,31 +39,141 @@
       font-size: 1rem;
     }
 
+    /* --- BOOKMARKS IN HEADER --- */
+    .header-bookmarks {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      z-index: 1200;
+    }
+    
+    .bookmark-toggle-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .bookmark-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+    
+    .bookmark-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+      background: rgba(30, 60, 114, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      min-width: 280px;
+      max-height: 300px;
+      overflow-y: auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      transform: translateY(-10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .bookmark-dropdown.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .bookmark-dropdown h3 {
+      margin: 0 0 1rem 0;
+      color: #ffcc00;
+      font-size: 1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+    
+    .bookmark-dropdown .bookmark-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .bookmark-dropdown .bookmark-item:last-child {
+      border-bottom: none;
+    }
+    
+    .bookmark-dropdown .bookmark-item a {
+      color: #f0f0f0;
+      text-decoration: none;
+      flex: 1;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+    
+    .bookmark-dropdown .bookmark-item a:hover {
+      color: #ffcc00;
+    }
+    
+    .bookmark-dropdown .bookmark-btn {
+      background: none;
+      border: none;
+      color: #ffd700;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.2rem;
+      margin-left: 0.5rem;
+      transition: transform 0.2s;
+    }
+    
+    .bookmark-dropdown .bookmark-btn:hover {
+      transform: scale(1.2);
+    }
+    
+    .bookmark-dropdown .empty-bookmarks {
+      color: #ccc;
+      font-style: italic;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+
     /* --- SIDEBAR --- */
     .sidebar {
       position: fixed;
       top: 0;
       left: 0;
       height: 100%;
-      width: 300px; /* Increased width */
-      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Gradient background */
+      width: 300px;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       padding: 2rem;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
       transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 1000;
-      color: #fff; /* White text for better contrast */
-      overflow-y: auto; /* Enable vertical scrolling */
+      color: #fff;
+      overflow-y: auto;
     }
     .sidebar::-webkit-scrollbar {
-      width: 8px; /* Custom scrollbar width */
+      width: 8px;
     }
     .sidebar::-webkit-scrollbar-thumb {
-      background: #2a5298; /* Scrollbar thumb color */
+      background: #2a5298;
       border-radius: 4px;
     }
     .sidebar::-webkit-scrollbar-thumb:hover {
-      background: #1e3c72; /* Scrollbar thumb hover color */
+      background: #1e3c72;
     }
     .sidebar.active {
       transform: translateX(0);
@@ -75,7 +186,7 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
-      color: #fff; /* White close button */
+      color: #fff;
     }
     .sidebar nav ul {
       list-style: none;
@@ -87,20 +198,20 @@
     }
     .sidebar nav ul li a {
       text-decoration: none;
-      color: #f0f0f0; /* Slightly lighter text color */
+      color: #f0f0f0;
       font-weight: 500;
-      font-size: 1.1rem; /* Slightly larger font size */
+      font-size: 1.1rem;
       transition: color 0.3s, transform 0.3s;
     }
     .sidebar nav ul li a:hover {
-      color: #ffcc00; /* Highlight color on hover */
-      transform: translateX(5px); /* Subtle movement on hover */
+      color: #ffcc00;
+      transform: translateX(5px);
     }
 
     /* --- MAIN CONTENT --- */
     .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
       max-width: 1200px;
@@ -109,26 +220,106 @@
     }
     .book-box {
       background: #f7f7f9;
-      padding: 2rem;
+      padding: 0;
       border-radius: 1rem;
-      text-align: center;
-      font-weight: 600;
-      color: #2a2a2a;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s forwards;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .book-box:nth-child(1) { animation-delay: 0.1s; }
     .book-box:nth-child(2) { animation-delay: 0.2s; }
     .book-box:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    
+    .book-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    
+    .book-header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+    
+    .book-header h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .book-body {
+      padding: 1.5rem;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .book-body h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.3rem;
+      color: #1e3c72;
+      line-height: 1.3;
+    }
+    
+    .book-body .edition {
+      font-size: 1rem;
+      color: #2a5298;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    
+    .book-body .publisher {
+      font-style: italic;
+      color: #777;
+      font-size: 0.85rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+    
+    .book-footer {
+      padding: 1rem;
+      background: #f0f0f0;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    
+    .open-pdf-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+    
+    .open-pdf-btn:hover {
+      background: linear-gradient(135deg, #20c997, #28a745);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+    
+    .explore-btn {
+      display: none; /* Hide explore button */
+    }
+    
+    /* Remove old styles that are no longer needed */
+    .book-spine,
+    .book-content,
+    .click-indicator {
+      display: none;
     }
 
     /* --- FOOTER --- */
@@ -159,12 +350,83 @@
       background: #2a5298;
       transform: translateY(-2px);
     }
+
+    /* --- BOOKMARKS --- */
+    .bookmark-section {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .bookmark-section h3 {
+      margin: 0 0 1rem 0;
+      color: #ffcc00;
+      font-size: 1.1rem;
+    }
+    .bookmark-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .bookmark-item:last-child {
+      border-bottom: none;
+    }
+    .bookmark-item a {
+      color: #f0f0f0;
+      text-decoration: none;
+      flex: 1;
+    }
+    .bookmark-item a:hover {
+      color: #ffcc00;
+    }
+    .bookmark-btn {
+      background: none;
+      border: none;
+      color: #ffcc00;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.2rem;
+      margin-left: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .bookmark-btn:hover {
+      transform: scale(1.2);
+    }
+    .bookmark-btn.bookmarked {
+      color: #ffd700;
+    }
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .nav-item a {
+      flex: 1;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>📊 PM Standards Comparator</h1>
     <p>Explore PMBOK 7, PRINCE2, and ISO Standards</p>
+    
+    <!-- Bookmarks in Header -->
+    <div class="header-bookmarks">
+      <button id="bookmarkToggle" class="bookmark-toggle-btn">
+        📌 Bookmarks <span id="bookmarkCount">(0)</span>
+      </button>
+      <div id="bookmarkDropdown" class="bookmark-dropdown">
+        <h3>📌 Bookmarks</h3>
+        <div id="bookmarksList">
+          <div class="empty-bookmarks">No bookmarks yet</div>
+        </div>
+      </div>
+    </div>
+    
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search topics...">
     </div>
@@ -172,23 +434,69 @@
 
   <aside id="sidebar" class="sidebar">
     <button id="closeSidebar" class="close-btn">×</button>
+    
     <nav>
       <ul>
-        <li><a href="introduction.html">Introduction & Project Management Frameworks</a></li>
-        <li><a href="governance.html">Project Governance & Roles</a></li>
-        <li><a href="tailoring.html">Tailoring & Contextualization</a></li>
-        <li><a href="businesscase.html">Business Case & Benefits Realization</a></li>
-        <li><a href="lifecycle.html">Project Life Cycle & Development</a></li>
-        <li><a href="planning.html">Planning Approaches & Plan Hierarchy</a></li>
-        <li><a href="scope.html">Scope & Deliverables Definition</a></li>
-        <li><a href="scheduling.html">Scheduling & Time Management</a></li>
-        <li><a href="resources.html">Resource & Cost Management</a></li>
-        <li><a href="quality.html">Quality Management</a></li>
-        <li><a href="risk.html">Risk & Issue Management</a></li>
-        <li><a href="closure.html">Project Closure, Lessons Learned & Continual Improvement</a></li>
-        <li><a href="change.html">Change Control & Configuration Management</a></li>
-        <li><a href="stakeholders.html">Stakeholder Engagement & Communication</a></li>
-        <li><a href="team.html">Team Management, Leadership & Culture</a></li>
+        <li class="nav-item">
+          <a href="introduction.html">Introduction & Project Management Frameworks</a>
+          <button class="bookmark-btn" data-page="introduction.html" data-title="Introduction & Project Management Frameworks">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="governance.html">Project Governance & Roles</a>
+          <button class="bookmark-btn" data-page="governance.html" data-title="Project Governance & Roles">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="tailoring.html">Tailoring & Contextualization</a>
+          <button class="bookmark-btn" data-page="tailoring.html" data-title="Tailoring & Contextualization">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="businesscase.html">Business Case & Benefits Realization</a>
+          <button class="bookmark-btn" data-page="businesscase.html" data-title="Business Case & Benefits Realization">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="lifecycle.html">Project Life Cycle & Development</a>
+          <button class="bookmark-btn" data-page="lifecycle.html" data-title="Project Life Cycle & Development">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="planning.html">Planning Approaches & Plan Hierarchy</a>
+          <button class="bookmark-btn" data-page="planning.html" data-title="Planning Approaches & Plan Hierarchy">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="scope.html">Scope & Deliverables Definition</a>
+          <button class="bookmark-btn" data-page="scope.html" data-title="Scope & Deliverables Definition">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="scheduling.html">Scheduling & Time Management</a>
+          <button class="bookmark-btn" data-page="scheduling.html" data-title="Scheduling & Time Management">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="resources.html">Resource & Cost Management</a>
+          <button class="bookmark-btn" data-page="resources.html" data-title="Resource & Cost Management">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="quality.html">Quality Management</a>
+          <button class="bookmark-btn" data-page="quality.html" data-title="Quality Management">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="risk.html">Risk & Issue Management</a>
+          <button class="bookmark-btn" data-page="risk.html" data-title="Risk & Issue Management">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="closure.html">Project Closure, Lessons Learned & Continual Improvement</a>
+          <button class="bookmark-btn" data-page="closure.html" data-title="Project Closure, Lessons Learned & Continual Improvement">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="change.html">Change Control & Configuration Management</a>
+          <button class="bookmark-btn" data-page="change.html" data-title="Change Control & Configuration Management">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="stakeholders.html">Stakeholder Engagement & Communication</a>
+          <button class="bookmark-btn" data-page="stakeholders.html" data-title="Stakeholder Engagement & Communication">☆</button>
+        </li>
+        <li class="nav-item">
+          <a href="team.html">Team Management, Leadership & Culture</a>
+          <button class="bookmark-btn" data-page="team.html" data-title="Team Management, Leadership & Culture">☆</button>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -196,9 +504,47 @@
   <button id="openSidebar" class="open-btn">☰ Topics</button>
 
   <main class="dashboard">
-    <div class="book-box">PMBOK 7</div>
-    <div class="book-box">PRINCE2</div>
-    <div class="book-box">ISO Standards</div>
+    <div class="book-box pmbok-book" data-book="pmbok">
+      <div class="book-header">
+        <h3>📘 PMBOK 7</h3>
+      </div>
+      <div class="book-body">
+        <h2>Project Management Body of Knowledge</h2>
+        <p class="edition">Seventh Edition</p>
+        <p class="publisher">PMI - Project Management Institute</p>
+      </div>
+      <div class="book-footer">
+        <button class="open-pdf-btn" onclick="openBookPDF('pmbok')">📖 Open PDF</button>
+      </div>
+    </div>
+    
+    <div class="book-box prince2-book" data-book="prince2">
+      <div class="book-header">
+        <h3>📗 PRINCE2</h3>
+      </div>
+      <div class="book-body">
+        <h2>Managing Successful Projects with PRINCE2®</h2>
+        <p class="edition">2023 Edition</p>
+        <p class="publisher">AXELOS Global Best Practice</p>
+      </div>
+      <div class="book-footer">
+        <button class="open-pdf-btn" onclick="openBookPDF('prince2')">📖 Open PDF</button>
+      </div>
+    </div>
+    
+    <div class="book-box iso-book" data-book="iso">
+      <div class="book-header">
+        <h3>📙 ISO 21500</h3>
+      </div>
+      <div class="book-body">
+        <h2>Project, Programme and Portfolio Management</h2>
+        <p class="edition">ISO 21500:2021</p>
+        <p class="publisher">International Organization for Standardization</p>
+      </div>
+      <div class="book-footer">
+        <button class="open-pdf-btn" onclick="openBookPDF('iso')">📖 Open PDF</button>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -206,15 +552,98 @@
   </footer>
 
   <script>
+    // --- BOOKMARK FUNCTIONALITY ---
+    let bookmarks = JSON.parse(localStorage.getItem('pmStandardsBookmarks')) || [];
+
+    function saveBookmarks() {
+      localStorage.setItem('pmStandardsBookmarks', JSON.stringify(bookmarks));
+    }
+
+    function updateBookmarkDisplay() {
+      const bookmarksList = document.getElementById('bookmarksList');
+      const bookmarkCount = document.getElementById('bookmarkCount');
+      
+      // Update count
+      bookmarkCount.textContent = `(${bookmarks.length})`;
+      
+      if (bookmarks.length === 0) {
+        bookmarksList.innerHTML = '<div class="empty-bookmarks">No bookmarks yet</div>';
+      } else {
+        bookmarksList.innerHTML = bookmarks.map(bookmark => `
+          <div class="bookmark-item">
+            <a href="${bookmark.page}">${bookmark.title}</a>
+            <button class="bookmark-btn" onclick="removeBookmark('${bookmark.page}')">★</button>
+          </div>
+        `).join('');
+      }
+
+      // Update bookmark buttons in sidebar
+      document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+        const page = btn.getAttribute('data-page');
+        const isBookmarked = bookmarks.some(b => b.page === page);
+        btn.textContent = isBookmarked ? '★' : '☆';
+        btn.classList.toggle('bookmarked', isBookmarked);
+      });
+    }
+
+    function toggleBookmark(page, title) {
+      const existingIndex = bookmarks.findIndex(b => b.page === page);
+      
+      if (existingIndex > -1) {
+        bookmarks.splice(existingIndex, 1);
+      } else {
+        bookmarks.push({ page, title });
+      }
+      
+      saveBookmarks();
+      updateBookmarkDisplay();
+    }
+
+    function removeBookmark(page) {
+      bookmarks = bookmarks.filter(b => b.page !== page);
+      saveBookmarks();
+      updateBookmarkDisplay();
+    }
+
+    // --- BOOKMARK DROPDOWN FUNCTIONALITY ---
+    const bookmarkToggle = document.getElementById('bookmarkToggle');
+    const bookmarkDropdown = document.getElementById('bookmarkDropdown');
+
+    bookmarkToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      bookmarkDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!bookmarkToggle.contains(e.target) && !bookmarkDropdown.contains(e.target)) {
+        bookmarkDropdown.classList.remove('show');
+      }
+    });
+
+    // Add event listeners to bookmark buttons
+    document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = btn.getAttribute('data-page');
+        const title = btn.getAttribute('data-title');
+        toggleBookmark(page, title);
+      });
+    });
+
+    // Initialize bookmarks display
+    updateBookmarkDisplay();
+
     // --- SEARCH FUNCTIONALITY ---
     const searchInput = document.getElementById("searchInput");
-    const links = document.querySelectorAll(".sidebar nav ul li a");
+    const navItems = document.querySelectorAll(".nav-item");
 
     searchInput.addEventListener("keyup", function () {
       const filter = searchInput.value.toLowerCase();
-      links.forEach(link => {
+      navItems.forEach(item => {
+        const link = item.querySelector('a');
         const text = link.textContent.toLowerCase();
-        link.parentElement.style.display = text.includes(filter) ? "block" : "none";
+        item.style.display = text.includes(filter) ? "flex" : "none";
       });
     });
 
@@ -230,6 +659,117 @@
     closeSidebar.addEventListener("click", () => {
       sidebar.style.transform = "translateX(-100%)";
     });
+
+    // --- BOOK PDF OPENING FUNCTIONALITY ---
+    function openBookPDF(standard) {
+      const bookLinks = {
+        'pmbok': {
+          pdf: 'book/pmbok.pdf',
+          title: 'PMBOK® Guide - Seventh Edition'
+        },
+        'prince2': {
+          pdf: 'book/prince2.pdf',
+          title: 'PRINCE2® - Managing Successful Projects'
+        },
+        'iso': {
+          pdf: 'book/iso.pdf',
+          title: 'ISO 21500:2021 - Project Management'
+        }
+      };
+
+      const book = bookLinks[standard];
+      if (book) {
+        // Show notification
+        showNotification(`Opening ${book.title}...`);
+        
+        // Open PDF directly
+        window.open(book.pdf, '_blank');
+      }
+    }
+
+    // --- NOTIFICATION SYSTEM ---
+    function showNotification(message) {
+      // Remove any existing notifications
+      const existingNotifications = document.querySelectorAll('.notification');
+      existingNotifications.forEach(notif => notif.remove());
+      
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 2000;
+        font-weight: 500;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // --- BOOK INTERACTION ---
+    document.querySelectorAll('.book-box').forEach(book => {
+      book.addEventListener('click', function(e) {
+        // Prevent opening PDF when clicking explore button
+        if (e.target.classList.contains('explore-btn')) {
+          return;
+        }
+        
+        const bookType = this.getAttribute('data-book');
+        if (bookType) {
+          openBookPDF(bookType);
+        }
+      });
+      
+      // Add cursor pointer and hover effect
+      book.style.cursor = 'pointer';
+      
+      // Add title attribute for better UX
+      const bookType = book.getAttribute('data-book');
+      if (bookType) {
+        const titles = {
+          'pmbok': 'Click to open PMBOK® Guide PDF',
+          'prince2': 'Click to open PRINCE2® Manual PDF', 
+          'iso': 'Click to open ISO 21500 Standard PDF'
+        };
+        book.title = titles[bookType];
+      }
+    });
+
+    // --- BOOK EXPLORATION FUNCTIONALITY ---
+    function exploreStandard(standard) {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.transform = "translateX(0)";
+      
+      const searchInput = document.getElementById("searchInput");
+      searchInput.focus();
+      
+      showNotification(`Exploring ${standard.toUpperCase()} topics...`);
+    }
   </script>
 </body>
 </html>
+        
