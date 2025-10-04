@@ -3,49 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Project Closure, Lessons Learned & Continual Improvement</title>
+  <title>Project Closure & Lessons Learned - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .comparison-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .standard-column {
+      background: var(--card-surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-stroke);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    .pmbok-column { border-left: 4px solid #2563eb; }
+    .prince2-column { border-left: 4px solid #16a34a; }
+    .iso-column { border-left: 4px solid #ea580c; }
+    
+    .standard-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .standard-header h3 {
+      margin: 0 0 0 0.5rem;
+      color: var(--accent);
+    }
+    
+    .key-points {
+      margin: 1rem 0;
+    }
+    
+    .key-points h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .key-points ul {
+      margin-left: 1rem;
+      color: var(--text);
+    }
+    
+    .comparison-summary {
+      background: var(--highlight-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Project Closure, Lessons Learned & Continual Improvement</h1>
+    <h1>🏁 Project Closure & Lessons Learned</h1>
     <p>Handover, benefits evaluation, organizational learning, and continuous improvement</p>
   </header>
 
   <main>
-    <section class="grid" aria-label="Project Closure, Lessons Learned & Continual Improvement">
-      <div class="box" data-animate>
-        <h2>📘 PMBOK</h2>
-        <p>Closure = deliverable handover, contracts closed, lessons captured for organizational assets, feeding continuous improvement.</p>
+    <div class="comparison-container">
+      <div class="standard-column pmbok-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📘</span>
+          <h3>PMBOK 7 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Value delivery completion focus</li>
+            <li>Organizational asset enrichment</li>
+            <li>Continuous improvement culture</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Performance domain closure integration</li>
+            <li>Value delivery validation</li>
+            <li>Adaptive lessons learned approaches</li>
+          </ul>
+        </div>
       </div>
-      <div class="box" data-animate>
-        <h2>📗 PRINCE2</h2>
-        <p>Formal closure with End Project Report, Benefits Review Plan, and Lessons Report. Emphasis on reuse and organizational learning.</p>
-      </div>
-      <div class="box" data-animate>
-        <h2>📙 ISO</h2>
-        <p>ISO 21502 defines closure as confirming outputs, releasing resources, reviewing performance, and capturing lessons for maturity improvement.</p>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="box highlight" data-animate>
-        <h2>✅ Similarities</h2>
-        <ul>
-          <li>All require formal closure and capturing lessons learned.</li>
-          <li>Focus on improving future projects through organizational learning.</li>
-        </ul>
+      <div class="standard-column prince2-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📗</span>
+          <h3>PRINCE2 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Formal governance-driven closure</li>
+            <li>Benefits realization planning</li>
+            <li>Organizational learning emphasis</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Mandatory closure reporting</li>
+            <li>Benefits Review Plan for post-project</li>
+            <li>Formal lessons capture process</li>
+          </ul>
+        </div>
       </div>
-      <div class="box highlight" data-animate>
-        <h2>⚖️ Differences</h2>
-        <ul>
-          <li>PMBOK = process asset updates; PRINCE2 = strong governance & reports; ISO = performance review and maturity perspective.</li>
-        </ul>
-      </div>
-    </section>
 
-    <a class="back-btn" href="home.html">⬅ Back to Dashboard</a>
+      <div class="standard-column iso-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📙</span>
+          <h3>ISO 21500 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Performance review and evaluation</li>
+            <li>Organizational maturity improvement</li>
+            <li>Systematic closure procedures</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Organizational maturity perspective</li>
+            <li>Performance review emphasis</li>
+            <li>Systematic improvement focus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison-summary">
+      <h3>🔍 Comparative Analysis</h3>
+      
+      <div class="grid">
+        <div class="box">
+          <h4>🤝 Similarities</h4>
+          <ul>
+            <li>All require formal closure and handover</li>
+            <li>Lessons learned capture for future projects</li>
+            <li>Organizational learning and improvement focus</li>
+            <li>Resource release and contract closure</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>⚡ Key Differences</h4>
+          <ul>
+            <li><strong>Reports:</strong> PMBOK (assets), PRINCE2 (formal reports), ISO (performance)</li>
+            <li><strong>Focus:</strong> PMBOK (value), PRINCE2 (governance), ISO (maturity)</li>
+            <li><strong>Approach:</strong> PMBOK (adaptive), PRINCE2 (structured), ISO (systematic)</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>🎯 Best Use Cases</h4>
+          <ul>
+            <li><strong>PMBOK:</strong> Continuous improvement environments</li>
+            <li><strong>PRINCE2:</strong> Governance-driven organizations</li>
+            <li><strong>ISO:</strong> Maturity and performance focus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-btn-wrapper">
+      <a href="home.html" class="back-btn">← Back to Home</a>
+    </div>
   </main>
-  <footer></footer>
 </body>
 </html>

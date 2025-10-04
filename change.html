@@ -3,49 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Change Control & Configuration Management</title>
+  <title>Change Control & Configuration Management - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .comparison-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .standard-column {
+      background: var(--card-surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-stroke);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    .pmbok-column { border-left: 4px solid #2563eb; }
+    .prince2-column { border-left: 4px solid #16a34a; }
+    .iso-column { border-left: 4px solid #ea580c; }
+    
+    .standard-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .standard-header h3 {
+      margin: 0 0 0 0.5rem;
+      color: var(--accent);
+    }
+    
+    .key-points {
+      margin: 1rem 0;
+    }
+    
+    .key-points h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .key-points ul {
+      margin-left: 1rem;
+      color: var(--text);
+    }
+    
+    .comparison-summary {
+      background: var(--highlight-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Change Control & Configuration Management</h1>
-    <p>Managing change requests, baselines, and configuration control</p>
+    <h1>🔄 Change Control & Configuration Management</h1>
+    <p>Managing change requests, baselines, and configuration control across standards</p>
   </header>
 
   <main>
-    <section class="grid" aria-label="Change Control & Configuration Management">
-      <div class="box" data-animate>
-        <h2>📘 PMBOK</h2>
-        <p>Integrated Change Control ensures all changes go through a Change Control Board. Configuration management maintains deliverable integrity, baselines, and documentation.</p>
+    <div class="comparison-container">
+      <div class="standard-column pmbok-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📘</span>
+          <h3>PMBOK 7 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Integrated change control across domains</li>
+            <li>Baseline integrity maintenance</li>
+            <li>Value-driven change decisions</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Performance domain integration</li>
+            <li>Adaptive change management</li>
+            <li>Value-impact change assessment</li>
+          </ul>
+        </div>
       </div>
-      <div class="box" data-animate>
-        <h2>📗 PRINCE2</h2>
-        <p>Configuration and Change Theme manages products, baselines, and change requests. Uses Change Authority, Change Budget, and Issue/Change logs.</p>
-      </div>
-      <div class="box" data-animate>
-        <h2>📙 ISO</h2>
-        <p>ISO 21502 calls for formal change control to evaluate requests and configuration management to ensure product traceability and version integrity.</p>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="box highlight" data-animate>
-        <h2>✅ Similarities</h2>
-        <ul>
-          <li>All mandate formal evaluation and approval of changes.</li>
-          <li>Configuration management ensures product/baseline integrity.</li>
-        </ul>
+      <div class="standard-column prince2-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📗</span>
+          <h3>PRINCE2 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Change theme throughout project</li>
+            <li>Product-focused configuration control</li>
+            <li>Authority-based change approval</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Change theme mandatory approach</li>
+            <li>Change Authority structure</li>
+            <li>Exception-based change escalation</li>
+          </ul>
+        </div>
       </div>
-      <div class="box highlight" data-animate>
-        <h2>⚖️ Differences</h2>
-        <ul>
-          <li>PMBOK = CCB-driven; PRINCE2 = Change Authority/Issue Register; ISO = general governance-level guidance.</li>
-        </ul>
-      </div>
-    </section>
 
-    <a class="back-btn" href="home.html">⬅ Back to Dashboard</a>
+      <div class="standard-column iso-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📙</span>
+          <h3>ISO 21500 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Formal governance-level change control</li>
+            <li>Systematic configuration management</li>
+            <li>Organizational change alignment</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Governance-driven change control</li>
+            <li>Organizational procedure alignment</li>
+            <li>High-level change guidance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison-summary">
+      <h3>🔍 Comparative Analysis</h3>
+      
+      <div class="grid">
+        <div class="box">
+          <h4>🤝 Similarities</h4>
+          <ul>
+            <li>All mandate formal change evaluation and approval</li>
+            <li>Configuration management ensures baseline integrity</li>
+            <li>Documentation and traceability requirements</li>
+            <li>Authority-based change decision making</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>⚡ Key Differences</h4>
+          <ul>
+            <li><strong>Structure:</strong> PMBOK (CCB), PRINCE2 (Change Authority), ISO (governance)</li>
+            <li><strong>Focus:</strong> PMBOK (integration), PRINCE2 (products), ISO (procedures)</li>
+            <li><strong>Approach:</strong> PMBOK (domains), PRINCE2 (themes), ISO (systematic)</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>🎯 Best Use Cases</h4>
+          <ul>
+            <li><strong>PMBOK:</strong> Complex integrated projects</li>
+            <li><strong>PRINCE2:</strong> Product-controlled environments</li>
+            <li><strong>ISO:</strong> Governance-driven organizations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-btn-wrapper">
+      <a href="home.html" class="back-btn">← Back to Home</a>
+    </div>
   </main>
-  <footer></footer>
 </body>
 </html>
