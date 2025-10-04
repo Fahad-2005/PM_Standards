@@ -3,49 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Team Management, Leadership & Culture</title>
+  <title>Team Management, Leadership & Culture - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .comparison-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .standard-column {
+      background: var(--card-surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-stroke);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    .pmbok-column { border-left: 4px solid #2563eb; }
+    .prince2-column { border-left: 4px solid #16a34a; }
+    .iso-column { border-left: 4px solid #ea580c; }
+    
+    .standard-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .standard-header h3 {
+      margin: 0 0 0 0.5rem;
+      color: var(--accent);
+    }
+    
+    .key-points {
+      margin: 1rem 0;
+    }
+    
+    .key-points h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .key-points ul {
+      margin-left: 1rem;
+      color: var(--text);
+    }
+    
+    .comparison-summary {
+      background: var(--highlight-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Team Management, Leadership & Culture</h1>
-    <p>Team composition, leadership styles, and high-performance culture</p>
+    <h1>👥 Team Management, Leadership & Culture</h1>
+    <p>Team composition, leadership styles, and high-performance culture across standards</p>
   </header>
 
   <main>
-    <section class="grid" aria-label="Team Management, Leadership & Culture">
-      <div class="box" data-animate>
-        <h2>📘 PMBOK</h2>
-        <p>Focuses on team development, leadership styles, and high-performance culture. Promotes servant leadership and collaboration.</p>
+    <div class="comparison-container">
+      <div class="standard-column pmbok-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📘</span>
+          <h3>PMBOK 7 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Team performance domain emphasis</li>
+            <li>Servant leadership and collaboration</li>
+            <li>High-performance culture building</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Performance domain team integration</li>
+            <li>Servant leadership emphasis</li>
+            <li>Adaptive team management approaches</li>
+          </ul>
+        </div>
       </div>
-      <div class="box" data-animate>
-        <h2>📗 PRINCE2</h2>
-        <p>Roles are predefined (Project Board, Project Manager, Team Manager). Leadership is governance-driven; team culture less emphasized.</p>
-      </div>
-      <div class="box" data-animate>
-        <h2>📙 ISO</h2>
-        <p>ISO 21502 highlights role clarity, competent leadership, and promoting collaboration. Links project culture with organizational values.</p>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="box highlight" data-animate>
-        <h2>✅ Similarities</h2>
-        <ul>
-          <li>All emphasize clear roles and responsibilities.</li>
-          <li>Leadership is critical to project success in all frameworks.</li>
-        </ul>
+      <div class="standard-column prince2-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📗</span>
+          <h3>PRINCE2 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Predefined roles and responsibilities</li>
+            <li>Governance-driven team structure</li>
+            <li>Clear authority and accountability</li>
+          </ul>
+        </div>
+        
+        
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Mandatory role structure</li>
+            <li>Governance-embedded leadership</li>
+            <li>Formal authority delegation</li>
+          </ul>
+        </div>
       </div>
-      <div class="box highlight" data-animate>
-        <h2>⚖️ Differences</h2>
-        <ul>
-          <li>PMBOK = flexible leadership/culture focus; PRINCE2 = formal role/governance focus; ISO = organizational alignment focus.</li>
-        </ul>
-      </div>
-    </section>
 
-    <a class="back-btn" href="home.html">⬅ Back to Dashboard</a>
+      <div class="standard-column iso-column">
+        <div class="standard-header">
+          <span style="font-size: 2rem;">📙</span>
+          <h3>ISO 21500 Approach</h3>
+        </div>
+        
+        <div class="key-points">
+          <h4>Core Philosophy</h4>
+          <ul>
+            <li>Role clarity and competent leadership</li>
+            <li>Collaboration and organizational alignment</li>
+            <li>Project culture linked to organizational values</li>
+          </ul>
+        </div>
+        
+       
+        
+        <div class="key-points">
+          <h4>Unique Elements</h4>
+          <ul>
+            <li>Organizational culture alignment</li>
+            <li>Competency-based approach</li>
+            <li>High-level leadership guidance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison-summary">
+      <h3>🔍 Comparative Analysis</h3>
+      
+      <div class="grid">
+        <div class="box">
+          <h4>🤝 Similarities</h4>
+          <ul>
+            <li>All emphasize clear roles and responsibilities</li>
+            <li>Leadership is critical to project success in all frameworks</li>
+            <li>Team communication and collaboration requirements</li>
+            <li>Authority and accountability clarity</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>⚡ Key Differences</h4>
+          <ul>
+            <li><strong>Leadership:</strong> PMBOK (servant), PRINCE2 (governance), ISO (competency)</li>
+            <li><strong>Structure:</strong> PMBOK (flexible), PRINCE2 (formal roles), ISO (organizational)</li>
+            <li><strong>Culture:</strong> PMBOK (performance), PRINCE2 (governance), ISO (alignment)</li>
+          </ul>
+        </div>
+        
+        <div class="box">
+          <h4>🎯 Best Use Cases</h4>
+          <ul>
+            <li><strong>PMBOK:</strong> Flexible, collaborative team environments</li>
+            <li><strong>PRINCE2:</strong> Formal governance and role structures</li>
+            <li><strong>ISO:</strong> Organizational culture alignment focus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-btn-wrapper">
+      <a href="home.html" class="back-btn">← Back to Home</a>
+    </div>
   </main>
-  <footer></footer>
 </body>
 </html>
