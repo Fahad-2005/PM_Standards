@@ -28,6 +28,7 @@
     }
     .search-container {
       margin-top: 1rem;
+      position: relative;
     }
     #searchInput {
       padding: 0.8rem;
@@ -37,6 +38,73 @@
       border-radius: 25px;
       outline: none;
       font-size: 1rem;
+    }
+
+    /* --- SEARCH SUGGESTIONS DROPDOWN --- */
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0.5rem;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 0.5rem;
+      min-width: 350px;
+      max-width: 500px;
+      max-height: 400px;
+      overflow-y: auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-50%) translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1300;
+    }
+    
+    .search-suggestions.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .search-suggestion-item {
+      padding: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      color: #333;
+    }
+    
+    .search-suggestion-item:last-child {
+      border-bottom: none;
+    }
+    
+    .search-suggestion-item:hover {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .search-suggestion-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .search-suggestion-desc {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 1rem;
+      color: #666;
+      font-style: italic;
     }
 
     /* --- BOOKMARKS IN HEADER --- */
@@ -429,6 +497,9 @@
     
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search topics...">
+      <div id="searchSuggestions" class="search-suggestions">
+        <div class="no-results">Start typing to search topics...</div>
+      </div>
     </div>
   </header>
 
@@ -634,12 +705,61 @@
     // Initialize bookmarks display
     updateBookmarkDisplay();
 
-    // --- SEARCH FUNCTIONALITY ---
+    // --- SEARCH FUNCTIONALITY WITH SUGGESTIONS ---
     const searchInput = document.getElementById("searchInput");
+    const searchSuggestions = document.getElementById("searchSuggestions");
     const navItems = document.querySelectorAll(".nav-item");
 
-    searchInput.addEventListener("keyup", function () {
-      const filter = searchInput.value.toLowerCase();
+    // Define all topics for search suggestions
+    const allTopics = [
+      { title: "Introduction & Project Management Frameworks", url: "introduction.html" },
+      { title: "Project Governance & Roles", url: "governance.html" },
+      { title: "Tailoring & Contextualization", url: "tailoring.html" },
+      { title: "Business Case & Benefits Realization", url: "businesscase.html" },
+      { title: "Project Life Cycle & Development", url: "lifecycle.html" },
+      { title: "Planning Approaches & Plan Hierarchy", url: "planning.html" },
+      { title: "Scope & Deliverables Definition", url: "scope.html" },
+      { title: "Scheduling & Time Management", url: "scheduling.html" },
+      { title: "Resource & Cost Management", url: "resources.html" },
+      { title: "Quality Management", url: "quality.html" },
+      { title: "Risk & Issue Management", url: "risk.html" },
+      { title: "Project Closure & Lessons Learned", url: "closure.html" },
+      { title: "Change Control & Configuration Management", url: "change.html" },
+      { title: "Stakeholder Engagement & Communication", url: "stakeholders.html" },
+      { title: "Team Management & Leadership", url: "team.html" }
+    ];
+
+    searchInput.addEventListener("input", function () {
+      const filter = searchInput.value.toLowerCase().trim();
+      
+      if (filter.length === 0) {
+        searchSuggestions.classList.remove('show');
+        // Reset sidebar filter
+        navItems.forEach(item => {
+          item.style.display = "flex";
+        });
+        return;
+      }
+
+      // Filter topics based on search
+      const filteredTopics = allTopics.filter(topic => 
+        topic.title.toLowerCase().includes(filter) 
+      );
+
+      // Update search suggestions
+      if (filteredTopics.length > 0) {
+        searchSuggestions.innerHTML = filteredTopics.map(topic => `
+          <div class="search-suggestion-item" onclick="goToTopic('${topic.url}')">
+            <div class="search-suggestion-title">${topic.title}</div>
+          </div>
+        `).join('');
+      } else {
+        searchSuggestions.innerHTML = '<div class="no-results">No topics found matching "' + filter + '"</div>';
+      }
+
+      searchSuggestions.classList.add('show');
+
+      // Also filter sidebar if it's open
       navItems.forEach(item => {
         const link = item.querySelector('a');
         const text = link.textContent.toLowerCase();
@@ -647,13 +767,36 @@
       });
     });
 
+    // Function to navigate to topic
+    function goToTopic(url) {
+      window.location.href = url;
+    }
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+        searchSuggestions.classList.remove('show');
+      }
+      
+      // Close sidebar when clicking outside and search is empty
+      if (!sidebar.contains(e.target) && 
+          !openSidebar.contains(e.target) && 
+          searchInput.value.trim() === '') {
+        sidebar.style.transform = "translateX(-100%)";
+      }
+    });
+
     // --- SIDEBAR FUNCTIONALITY ---
     const sidebar = document.getElementById("sidebar");
     const openSidebar = document.getElementById("openSidebar");
     const closeSidebar = document.getElementById("closeSidebar");
 
+    // Focus search input when sidebar opens
     openSidebar.addEventListener("click", () => {
       sidebar.style.transform = "translateX(0)";
+      setTimeout(() => {
+        searchInput.focus();
+      }, 100);
     });
 
     closeSidebar.addEventListener("click", () => {
@@ -772,4 +915,7 @@
   </script>
 </body>
 </html>
-        
+    <!-- }
+  </script>
+</body>
+</html> -->
