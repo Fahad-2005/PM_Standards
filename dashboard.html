@@ -5,115 +5,356 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insights Dashboard - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+    /* Dashboard specific styles */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
     }
     
     .insight-card {
       background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid var(--glass-stroke);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .insight-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(74,163,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .insight-card:hover::before {
+      opacity: 1;
+      animation: rotate 6s linear infinite;
+    }
+    
+    .insight-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(124,162,255,0.4);
+      box-shadow: 0 20px 60px rgba(74,163,255,0.4);
     }
     
     .insight-card h3 {
       color: var(--accent);
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
     
     .stat-number {
-      font-size: 2rem;
-      font-weight: bold;
-      color: var(--primary);
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: block;
+      margin: 20px 0;
+      animation: countUp 2s ease-out;
+    }
+    
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .stat-description {
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 10px;
     }
     
     .comparison-matrix {
       overflow-x: auto;
-      margin: 1rem 0;
+      margin: 30px 0;
+      border-radius: 15px;
     }
     
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
       background: var(--card-surface);
-      border-radius: 8px;
+      border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
     
     .comparison-table th,
     .comparison-table td {
-      padding: 0.8rem;
+      padding: 18px;
       text-align: left;
       border-bottom: 1px solid var(--glass-stroke);
     }
     
     .comparison-table th {
-      background: var(--primary);
+      background: linear-gradient(135deg, rgba(74,163,255,0.3), rgba(124,162,255,0.2));
       color: white;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .comparison-table tr {
+      transition: all 0.3s ease;
+    }
+    
+    .comparison-table tr:hover {
+      background: rgba(124,162,255,0.1);
+      transform: scale(1.01);
+    }
+    
+    .similarity-high { 
+      background: rgba(40, 167, 69, 0.25);
+      color: #4ade80;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    
+    .similarity-medium { 
+      background: rgba(255, 193, 7, 0.25);
+      color: #fbbf24;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    
+    .similarity-low { 
+      background: rgba(220, 53, 69, 0.25);
+      color: #f87171;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 400px;
+      margin: 30px 0;
+      padding: 20px;
+      background: var(--card-surface);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    
+    .key-insights {
+      background: linear-gradient(135deg, rgba(74,163,255,0.15), rgba(124,162,255,0.1));
+      padding: 25px;
+      border-radius: 20px;
+      border-left: 5px solid var(--accent);
+      margin: 20px 0;
+    }
+    
+    .key-insights h4 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .key-insights ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .key-insights li {
+      padding: 12px 0 12px 40px;
+      position: relative;
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    
+    .key-insights li::before {
+      content: '▶';
+      position: absolute;
+      left: 10px;
+      color: var(--accent);
+      transition: all 0.3s ease;
+    }
+    
+    .key-insights li:hover {
+      padding-left: 50px;
+      color: var(--accent);
+    }
+    
+    .key-insights li:hover::before {
+      left: 20px;
+    }
+    
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(124,162,255,0.1);
+    }
+    
+    .metric-label {
+      font-size: 1.1rem;
+      color: var(--text);
       font-weight: 600;
     }
     
-    .similarity-high { background: rgba(40, 167, 69, 0.2); }
-    .similarity-medium { background: rgba(255, 193, 7, 0.2); }
-    .similarity-low { background: rgba(220, 53, 69, 0.2); }
+    .metric-value {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Hero section */
+    .dashboard-hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, rgba(74,163,255,0.2), rgba(124,162,255,0.1));
+      border-radius: 25px;
+      margin-bottom: 40px;
+      border: 2px solid rgba(124,162,255,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    
+    .dashboard-hero h2 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+    
+    .dashboard-hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .full-width-card {
+      grid-column: 1 / -1;
+    }
   </style>
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>📊 Insights Dashboard</h1>
     <p>Comprehensive analysis of PM Standards similarities and differences</p>
   </header>
 
   <main>
+    <div class="dashboard-hero" data-aos="zoom-in">
+      <h2>🎯 Data-Driven Insights</h2>
+      <p>Visualizing the convergence and divergence across PMBOK 7, PRINCE2, and ISO 21500</p>
+    </div>
+
     <div class="dashboard-grid">
-      <div class="insight-card">
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="100">
         <h3>📈 Overview Statistics</h3>
         <span class="stat-number">15</span>
-        <p>Total comparison topics covered</p>
-        <span class="stat-number">3</span>
-        <p>Standards analyzed (PMBOK 7, PRINCE2, ISO 21500)</p>
-        <span class="stat-number">45</span>
-        <p>Cross-standard comparison points</p>
+        <p class="stat-description">Total comparison topics covered</p>
+        <hr style="border: 1px solid rgba(124,162,255,0.2); margin: 20px 0;">
+        <span class="stat-number" style="font-size: 3rem;">3</span>
+        <p class="stat-description">Standards analyzed (PMBOK 7, PRINCE2, ISO 21500)</p>
+        <hr style="border: 1px solid rgba(124,162,255,0.2); margin: 20px 0;">
+        <span class="stat-number" style="font-size: 3rem;">45</span>
+        <p class="stat-description">Cross-standard comparison points</p>
       </div>
 
-      <div class="insight-card">
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="200">
         <h3>🤝 Similarities Summary</h3>
-        <ul>
-          <li><strong>Risk Management:</strong> All three emphasize continuous risk assessment</li>
-          <li><strong>Stakeholder Engagement:</strong> Common focus on identification and communication</li>
-          <li><strong>Quality Management:</strong> Shared principles of quality planning and control</li>
-          <li><strong>Project Closure:</strong> Universal emphasis on lessons learned</li>
-        </ul>
+        <div class="key-insights">
+          <ul>
+            <li><strong>Risk Management:</strong> All three emphasize continuous risk assessment and mitigation strategies</li>
+            <li><strong>Stakeholder Engagement:</strong> Common focus on identification and communication</li>
+            <li><strong>Quality Management:</strong> Shared principles of quality planning and control</li>
+            <li><strong>Project Closure:</strong> Universal emphasis on lessons learned and knowledge transfer</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="insight-card">
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="300">
         <h3>⚡ Key Differences</h3>
-        <ul>
-          <li><strong>PMBOK 7:</strong> Principle-based, performance domains approach</li>
-          <li><strong>PRINCE2:</strong> Product-focused, stage-gate methodology</li>
-          <li><strong>ISO 21500:</strong> High-level guidelines, organizational context</li>
-          <li><strong>Terminology:</strong> Different names for similar concepts</li>
-        </ul>
+        <div class="key-insights">
+          <ul>
+            <li><strong>PMBOK 7:</strong> Principle-based, performance domains approach with flexible tailoring</li>
+            <li><strong>PRINCE2:</strong> Product-focused, stage-gate methodology with defined roles</li>
+            <li><strong>ISO 21500:</strong> High-level guidelines, organizational context and governance focus</li>
+            <li><strong>Terminology:</strong> Different names for similar concepts across standards</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="insight-card">
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="400">
         <h3>🎯 Unique Elements</h3>
-        <ul>
-          <li><strong>PMBOK Only:</strong> Performance domains, principle-based tailoring</li>
-          <li><strong>PRINCE2 Only:</strong> Business case theme, product-based planning</li>
-          <li><strong>ISO Only:</strong> Portfolio/programme integration, governance focus</li>
-        </ul>
+        <div class="key-insights">
+          <ul>
+            <li><strong>PMBOK Only:</strong> Performance domains, principle-based tailoring framework</li>
+            <li><strong>PRINCE2 Only:</strong> Business case theme, product-based planning approach</li>
+            <li><strong>ISO Only:</strong> Portfolio/programme integration, governance and compliance focus</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <!-- <div class="insight-card">
+    <!-- Charts Section -->
+    <div class="insight-card full-width-card" data-aos="fade-up" data-aos-delay="500">
+      <h3>📊 Standards Comparison by Topic</h3>
+      <div class="chart-container">
+        <canvas id="comparisonChart"></canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="600">
+        <h3>🎨 Methodology Distribution</h3>
+        <div class="chart-container" style="height: 300px;">
+          <canvas id="methodologyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="insight-card" data-aos="fade-up" data-aos-delay="700">
+        <h3>📈 Alignment Metrics</h3>
+        <div style="padding: 20px 0;">
+          <div class="metric-row">
+            <span class="metric-label">PMBOK ↔ PRINCE2</span>
+            <span class="metric-value">72%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">PMBOK ↔ ISO 21500</span>
+            <span class="metric-value">78%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">PRINCE2 ↔ ISO 21500</span>
+            <span class="metric-value">68%</span>
+          </div>
+          <div class="metric-row" style="border-bottom: none;">
+            <span class="metric-label">Overall Alignment</span>
+            <span class="metric-value">73%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic Similarity Matrix -->
+    <div class="insight-card full-width-card" data-aos="fade-up" data-aos-delay="800">
       <h3>📋 Topic Similarity Matrix</h3>
       <div class="comparison-matrix">
         <table class="comparison-table">
@@ -128,48 +369,252 @@
           </thead>
           <tbody>
             <tr>
-              <td>Risk Management</td>
+              <td><strong>Risk Management</strong></td>
               <td class="similarity-high">High (85%)</td>
               <td class="similarity-high">High (80%)</td>
               <td class="similarity-medium">Medium (70%)</td>
               <td class="similarity-high">High</td>
             </tr>
             <tr>
-              <td>Stakeholder Engagement</td>
+              <td><strong>Stakeholder Engagement</strong></td>
               <td class="similarity-medium">Medium (75%)</td>
               <td class="similarity-high">High (85%)</td>
               <td class="similarity-medium">Medium (70%)</td>
               <td class="similarity-medium">Medium-High</td>
             </tr>
             <tr>
-              <td>Project Planning</td>
+              <td><strong>Project Planning</strong></td>
               <td class="similarity-low">Low (60%)</td>
               <td class="similarity-medium">Medium (70%)</td>
               <td class="similarity-medium">Medium (65%)</td>
               <td class="similarity-medium">Medium</td>
             </tr>
             <tr>
-              <td>Quality Management</td>
+              <td><strong>Quality Management</strong></td>
               <td class="similarity-high">High (80%)</td>
               <td class="similarity-high">High (85%)</td>
               <td class="similarity-high">High (75%)</td>
               <td class="similarity-high">High</td>
             </tr>
             <tr>
-              <td>Project Governance</td>
+              <td><strong>Project Governance</strong></td>
               <td class="similarity-medium">Medium (65%)</td>
               <td class="similarity-low">Low (55%)</td>
               <td class="similarity-high">High (80%)</td>
               <td class="similarity-medium">Medium</td>
             </tr>
+            <tr>
+              <td><strong>Change Control</strong></td>
+              <td class="similarity-high">High (82%)</td>
+              <td class="similarity-medium">Medium (72%)</td>
+              <td class="similarity-high">High (78%)</td>
+              <td class="similarity-high">High</td>
+            </tr>
+            <tr>
+              <td><strong>Resource Management</strong></td>
+              <td class="similarity-medium">Medium (68%)</td>
+              <td class="similarity-medium">Medium (75%)</td>
+              <td class="similarity-medium">Medium (70%)</td>
+              <td class="similarity-medium">Medium</td>
+            </tr>
+            <tr>
+              <td><strong>Scheduling</strong></td>
+              <td class="similarity-medium">Medium (73%)</td>
+              <td class="similarity-medium">Medium (77%)</td>
+              <td class="similarity-medium">Medium (71%)</td>
+              <td class="similarity-medium">Medium</td>
+            </tr>
+            <tr>
+              <td><strong>Team Management</strong></td>
+              <td class="similarity-high">High (79%)</td>
+              <td class="similarity-medium">Medium (74%)</td>
+              <td class="similarity-medium">Medium (69%)</td>
+              <td class="similarity-medium">Medium-High</td>
+            </tr>
+            <tr>
+              <td><strong>Scope Definition</strong></td>
+              <td class="similarity-medium">Medium (66%)</td>
+              <td class="similarity-medium">Medium (72%)</td>
+              <td class="similarity-high">High (81%)</td>
+              <td class="similarity-medium">Medium</td>
+            </tr>
           </tbody>
         </table>
       </div>
-    </div> -->
+    </div>
 
-    <div class="back-btn-wrapper">
+    <div class="back-btn-wrapper" data-aos="fade-up" data-aos-delay="900">
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Comparison Chart
+    const comparisonCtx = document.getElementById('comparisonChart').getContext('2d');
+    const comparisonChart = new Chart(comparisonCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Risk Mgmt', 'Stakeholder', 'Planning', 'Quality', 'Governance', 'Change', 'Resources', 'Scheduling', 'Team', 'Scope'],
+        datasets: [
+          {
+            label: 'PMBOK 7',
+            data: [85, 75, 60, 80, 65, 82, 68, 73, 79, 66],
+            backgroundColor: 'rgba(37, 99, 235, 0.2)',
+            borderColor: 'rgba(37, 99, 235, 1)',
+            borderWidth: 3,
+            pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+          },
+          {
+            label: 'PRINCE2',
+            data: [70, 70, 65, 75, 80, 78, 70, 71, 69, 81],
+            backgroundColor: 'rgba(22, 163, 74, 0.2)',
+            borderColor: 'rgba(22, 163, 74, 1)',
+            borderWidth: 3,
+            pointBackgroundColor: 'rgba(22, 163, 74, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(22, 163, 74, 1)'
+          },
+          {
+            label: 'ISO 21500',
+            data: [80, 85, 70, 85, 55, 72, 75, 77, 74, 72],
+            backgroundColor: 'rgba(234, 88, 12, 0.2)',
+            borderColor: 'rgba(234, 88, 12, 1)',
+            borderWidth: 3,
+            pointBackgroundColor: 'rgba(234, 88, 12, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(234, 88, 12, 1)'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              color: '#98a7b8',
+              backdropColor: 'transparent',
+              font: {
+                size: 12,
+                weight: 'bold'
+              }
+            },
+            grid: {
+              color: 'rgba(124, 162, 255, 0.2)'
+            },
+            pointLabels: {
+              color: '#e6eef8',
+              font: {
+                size: 13,
+                weight: 'bold'
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#e6eef8',
+              font: {
+                size: 14,
+                weight: 'bold'
+              },
+              padding: 20
+            }
+          }
+        }
+      }
+    });
+
+    // Methodology Chart
+    const methodologyCtx = document.getElementById('methodologyChart').getContext('2d');
+    const methodologyChart = new Chart(methodologyCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Principle-Based (PMBOK)', 'Process-Based (PRINCE2)', 'Guideline-Driven (ISO)'],
+        datasets: [{
+          data: [35, 40, 25],
+          backgroundColor: [
+            'rgba(37, 99, 235, 0.8)',
+            'rgba(22, 163, 74, 0.8)',
+            'rgba(234, 88, 12, 0.8)'
+          ],
+          borderColor: [
+            'rgba(37, 99, 235, 1)',
+            'rgba(22, 163, 74, 1)',
+            'rgba(234, 88, 12, 1)'
+          ],
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: '#e6eef8',
+              font: {
+                size: 13,
+                weight: 'bold'
+              },
+              padding: 15
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Animate numbers on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll('.stat-number');
+          statNumbers.forEach(stat => {
+            stat.style.animation = 'countUp 2s ease-out';
+          });
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.insight-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
 </body>
 </html>

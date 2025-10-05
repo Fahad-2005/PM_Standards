@@ -5,179 +5,164 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Scheduling & Time Management - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .comparison-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .standard-column {
-      background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    
-    .pmbok-column { border-left: 4px solid #2563eb; }
-    .prince2-column { border-left: 4px solid #16a34a; }
-    .iso-column { border-left: 4px solid #ea580c; }
-    
-    .standard-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .standard-header h3 {
-      margin: 0 0 0 0.5rem;
-      color: var(--accent);
-    }
-    
-    .key-points {
-      margin: 1rem 0;
-    }
-    
-    .key-points h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .key-points ul {
-      margin-left: 1rem;
-      color: var(--text);
-    }
-    
-    .comparison-summary {
-      background: var(--highlight-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>⏰ Scheduling & Time Management</h1>
-    <p>Dependencies, milestones, critical path, iterative timelines</p>
+    <p>Timeline development, sequencing, and duration management across standards</p>
   </header>
 
   <main>
+    <div class="hero-section" data-aos="zoom-in">
+      <h2>🕐 Managing Time</h2>
+      <p>Exploring how PMBOK 7, PRINCE2, and ISO 21500 approach project scheduling, activity sequencing, duration estimation, and timeline control</p>
+    </div>
+
+    <!-- Topic Image -->
+    <div class="topic-image" data-aos="fade-up">
+      <span class="icon-large">⏰</span>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PMBOK Schedule Management</span>
+          <span>87%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="87%">87%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PRINCE2 Time-Based Controls</span>
+          <span>83%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="83%">83%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>ISO Time Process Group</span>
+          <span>81%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="81%">81%</div>
+        </div>
+      </div>
+    </div>
+
     <div class="comparison-container">
-      <div class="standard-column pmbok-column">
+      <div class="standard-column pmbok-column" data-aos="fade-right" data-aos-delay="200">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📘</span>
+          <span style="font-size: 3rem;">📘</span>
           <h3>PMBOK 7 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Schedule as delivery enabler</li>
-            <li>Adaptive scheduling approaches</li>
-            <li>Value-driven time management</li>
+            <li>Schedule management within planning domain</li>
+            <li>Activity sequencing and dependencies</li>
+            <li>Critical path and schedule optimization</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Performance domain integration</li>
-            <li>Adaptive scheduling techniques</li>
-            <li>Value-focused time decisions</li>
+            <li>Network diagramming techniques</li>
+            <li>Schedule compression methods</li>
+            <li>Iterative and rolling wave scheduling</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column prince2-column">
+      <div class="standard-column prince2-column" data-aos="fade-up" data-aos-delay="300">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📗</span>
+          <span style="font-size: 3rem;">📗</span>
           <h3>PRINCE2 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Product-driven scheduling</li>
-            <li>Stage-based time control</li>
-            <li>Tolerance-based management</li>
+            <li>Stage-based timeline management</li>
+            <li>Product delivery scheduling</li>
+            <li>Time tolerances and controls</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Stage-based scheduling hierarchy</li>
-            <li>Tolerance-driven control</li>
-            <li>Product delivery focus</li>
+            <li>Checkpoint reports for timing</li>
+            <li>Stage boundary time reviews</li>
+            <li>Product-driven scheduling</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column iso-column">
+      <div class="standard-column iso-column" data-aos="fade-left" data-aos-delay="400">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📙</span>
+          <span style="font-size: 3rem;">📙</span>
           <h3>ISO 21500 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Lifecycle-aligned scheduling</li>
-            <li>Governance milestone integration</li>
-            <li>Systematic time management</li>
+            <li>Time as subject group process</li>
+            <li>Schedule development and control</li>
+            <li>Organizational timing standards</li>
           </ul>
         </div>
-        
-       
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Governance-driven milestones</li>
-            <li>Organizational schedule alignment</li>
-            <li>High-level scheduling guidance</li>
+            <li>Define activities and sequences</li>
+            <li>Estimate and develop schedule</li>
+            <li>Portfolio-level timing alignment</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="comparison-summary">
+    <div class="comparison-summary" data-aos="fade-up" data-aos-delay="500">
       <h3>🔍 Comparative Analysis</h3>
       
-      <div class="grid">
+      <div class="summary-grid">
         <div class="box">
           <h4>🤝 Similarities</h4>
           <ul>
-            <li>Clear sequencing and milestone control</li>
-            <li>Schedule integration with planning hierarchy</li>
-            <li>Progress monitoring and control emphasis</li>
-            <li>Governance decision point alignment</li>
+            <li>All require timeline development and control</li>
+            <li>Activity sequencing and dependencies recognized</li>
+            <li>Duration estimation essential</li>
+            <li>Schedule baseline or equivalent needed</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>⚡ Key Differences</h4>
           <ul>
-            <li><strong>Techniques:</strong> PMBOK (detailed), PRINCE2 (stage-based), ISO (high-level)</li>
-            <li><strong>Control:</strong> PMBOK (adaptive), PRINCE2 (tolerance), ISO (governance)</li>
-            <li><strong>Focus:</strong> PMBOK (value), PRINCE2 (products), ISO (organization)</li>
+            <li><strong>Techniques:</strong> PMBOK (CPM, PERT), PRINCE2 (stage-based), ISO (process-driven)</li>
+            <li><strong>Granularity:</strong> PMBOK (detailed), PRINCE2 (stage-focused), ISO (high-level)</li>
+            <li><strong>Flexibility:</strong> PMBOK (adaptive), PRINCE2 (controlled), ISO (organizational)</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>🎯 Best Use Cases</h4>
           <ul>
-            <li><strong>PMBOK:</strong> Complex scheduling requirements</li>
-            <li><strong>PRINCE2:</strong> Stage-controlled projects</li>
-            <li><strong>ISO:</strong> Governance-driven scheduling</li>
+            <li><strong>PMBOK:</strong> Complex projects with intricate dependencies</li>
+            <li><strong>PRINCE2:</strong> Stage-driven projects with clear milestones</li>
+            <li><strong>ISO:</strong> Organizations with standardized scheduling processes</li>
           </ul>
         </div>
       </div>
@@ -187,5 +172,49 @@
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+          const width = fill.getAttribute('data-width');
+          fill.style.width = width;
+        });
+      }, 500);
+    });
+
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>

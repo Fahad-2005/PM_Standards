@@ -5,71 +5,62 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Stakeholder Engagement & Communication - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .comparison-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .standard-column {
-      background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    
-    .pmbok-column { border-left: 4px solid #2563eb; }
-    .prince2-column { border-left: 4px solid #16a34a; }
-    .iso-column { border-left: 4px solid #ea580c; }
-    
-    .standard-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .standard-header h3 {
-      margin: 0 0 0 0.5rem;
-      color: var(--accent);
-    }
-    
-    .key-points {
-      margin: 1rem 0;
-    }
-    
-    .key-points h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .key-points ul {
-      margin-left: 1rem;
-      color: var(--text);
-    }
-    
-    .comparison-summary {
-      background: var(--highlight-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>👥 Stakeholder Engagement & Communication</h1>
-    <p>Identification, mapping, engagement strategies, and communication practices</p>
+  <header data-aos="fade-down">
+    <h1>🤝 Stakeholder Engagement & Communication</h1>
+    <p>Identifying, analyzing, and engaging stakeholders across standards</p>
   </header>
 
   <main>
+    <div class="hero-section" data-aos="zoom-in">
+      <h2>💬 Building Relationships</h2>
+      <p>Understanding how PMBOK 7, PRINCE2, and ISO 21500 approach stakeholder identification, analysis, engagement strategies, and communication management</p>
+    </div>
+
+    <!-- Topic Image -->
+    <div class="topic-image" data-aos="fade-up">
+      <span class="icon-large">🤝</span>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PMBOK Stakeholder Domain</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="90%">90%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PRINCE2 Communication Strategy</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="85%">85%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>ISO Stakeholder Processes</span>
+          <span>88%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="88%">88%</div>
+        </div>
+      </div>
+    </div>
+
     <div class="comparison-container">
-      <div class="standard-column pmbok-column">
+      <div class="standard-column pmbok-column" data-aos="fade-right" data-aos-delay="200">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📘</span>
+          <span style="font-size: 3rem;">📘</span>
           <h3>PMBOK 7 Approach</h3>
         </div>
         
@@ -77,98 +68,92 @@
           <h4>Core Philosophy</h4>
           <ul>
             <li>Stakeholder performance domain</li>
-            <li>Continuous engagement focus</li>
-            <li>Value-driven stakeholder decisions</li>
+            <li>Continuous engagement throughout</li>
+            <li>Proactive relationship management</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Performance domain integration</li>
-            <li>Principle-based engagement</li>
-            <li>Adaptive communication approaches</li>
+            <li>Stakeholder register and analysis</li>
+            <li>Engagement assessment matrix</li>
+            <li>Communication management plan</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column prince2-column">
+      <div class="standard-column prince2-column" data-aos="fade-up" data-aos-delay="300">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📗</span>
+          <span style="font-size: 3rem;">📗</span>
           <h3>PRINCE2 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Role-based stakeholder structure</li>
-            <li>Communication management strategy</li>
-            <li>Governance-embedded engagement</li>
+            <li>Communication Management Strategy</li>
+            <li>Defined roles and responsibilities</li>
+            <li>Information flow structure</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Defined role-based structure</li>
-            <li>Communication management strategy</li>
-            <li>Governance role integration</li>
+            <li>Communication management approach</li>
+            <li>Stakeholder analysis as input</li>
+            <li>Reporting through stage gates</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column iso-column">
+      <div class="standard-column iso-column" data-aos="fade-left" data-aos-delay="400">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📙</span>
+          <span style="font-size: 3rem;">📙</span>
           <h3>ISO 21500 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
+            <li>Stakeholder subject group</li>
+            <li>Manage stakeholders process</li>
             <li>Organizational stakeholder context</li>
-            <li>Systematic engagement approach</li>
-            <li>Governance-aligned communication</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Organizational context emphasis</li>
-            <li>High-level engagement principles</li>
-            <li>Governance integration focus</li>
+            <li>Identify and manage stakeholders</li>
+            <li>Manage communications process</li>
+            <li>Portfolio stakeholder alignment</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="comparison-summary">
+    <div class="comparison-summary" data-aos="fade-up" data-aos-delay="500">
       <h3>🔍 Comparative Analysis</h3>
       
-      <div class="grid">
+      <div class="summary-grid">
         <div class="box">
           <h4>🤝 Similarities</h4>
           <ul>
-            <li>Early stakeholder identification emphasis</li>
-            <li>Planned communication practices requirement</li>
-            <li>Engagement strategy development</li>
-            <li>Continuous stakeholder monitoring</li>
+            <li>All emphasize stakeholder identification</li>
+            <li>Communication planning essential</li>
+            <li>Continuous engagement required</li>
+            <li>Stakeholder analysis and prioritization</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>⚡ Key Differences</h4>
           <ul>
-            <li><strong>Structure:</strong> PMBOK (domain), PRINCE2 (roles), ISO (organizational)</li>
-            <li><strong>Approach:</strong> PMBOK (adaptive), PRINCE2 (governance), ISO (systematic)</li>
-            <li><strong>Focus:</strong> PMBOK (performance), PRINCE2 (roles), ISO (alignment)</li>
+            <li><strong>Integration:</strong> PMBOK (domain), PRINCE2 (strategy), ISO (process group)</li>
+            <li><strong>Documentation:</strong> PMBOK (register + plan), PRINCE2 (strategy), ISO (process outputs)</li>
+            <li><strong>Focus:</strong> PMBOK (engagement levels), PRINCE2 (roles), ISO (organizational)</li>
           </ul>
         </div>
         
@@ -176,8 +161,8 @@
           <h4>🎯 Best Use Cases</h4>
           <ul>
             <li><strong>PMBOK:</strong> Complex stakeholder environments</li>
-            <li><strong>PRINCE2:</strong> Role-defined governance structures</li>
-            <li><strong>ISO:</strong> Organizational stakeholder alignment</li>
+            <li><strong>PRINCE2:</strong> Structured organizations with defined roles</li>
+            <li><strong>ISO:</strong> Large enterprises with multiple stakeholder groups</li>
           </ul>
         </div>
       </div>
@@ -187,6 +172,49 @@
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
-  <footer></footer>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+          const width = fill.getAttribute('data-width');
+          fill.style.width = width;
+        });
+      }, 500);
+    });
+
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>

@@ -5,62 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    /* --- HEADER --- */
-    header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-      position: relative;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    header p {
-      margin: 0.5rem 0 1.5rem;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-    .search-container {
-      margin-top: 1rem;
-      position: relative;
-    }
-    #searchInput {
-      padding: 0.8rem;
-      width: 80%;
-      max-width: 400px;
-      border: none;
-      border-radius: 25px;
-      outline: none;
-      font-size: 1rem;
+    /* --- PARTICLE BACKGROUND --- */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at top, #1e3c72, #000000);
     }
 
-    /* --- SEARCH SUGGESTIONS DROPDOWN --- */
+    /* --- ANIMATED HEADER --- */
+    header {
+      background: linear-gradient(135deg, rgba(30,60,114,0.95), rgba(42,82,152,0.95));
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #fff, #ffcc00, #fff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s ease infinite;
+    }
+    
+    @keyframes gradientText {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    header p {
+      margin: 1rem 0 2rem;
+      font-size: 1.2rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease;
+    }
+
+    /* --- SEARCH CONTAINER --- */
+    .search-container {
+      margin-top: 1.5rem;
+      position: relative;
+      animation: fadeInUp 1.2s ease;
+    }
+    
+    #searchInput {
+      padding: 1rem 1.5rem;
+      width: 85%;
+      max-width: 500px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      outline: none;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.95);
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    #searchInput:focus {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(255,204,0,0.4);
+      border-color: #ffcc00;
+    }
+
+    /* --- SEARCH SUGGESTIONS --- */
     .search-suggestions {
       position: absolute;
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      padding: 0.5rem;
-      min-width: 350px;
-      max-width: 500px;
-      max-height: 400px;
+      border-radius: 20px;
+      padding: 0.8rem;
+      min-width: 400px;
+      max-width: 550px;
+      max-height: 450px;
       overflow-y: auto;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
       opacity: 0;
       visibility: hidden;
-      transform: translateX(-50%) translateY(-10px);
-      transition: all 0.3s ease;
+      transform: translateX(-50%) translateY(-20px);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       z-index: 1300;
     }
     
@@ -71,12 +127,29 @@
     }
     
     .search-suggestion-item {
-      padding: 0.8rem;
-      border-radius: 8px;
+      padding: 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       color: #333;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .search-suggestion-item::before {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(30,60,114,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .search-suggestion-item:hover::before {
+      left: 100%;
     }
     
     .search-suggestion-item:last-child {
@@ -86,73 +159,63 @@
     .search-suggestion-item:hover {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: white;
-      transform: translateX(5px);
+      transform: translateX(10px) scale(1.02);
     }
     
     .search-suggestion-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    .search-suggestion-desc {
-      font-size: 0.8rem;
-      opacity: 0.7;
-    }
-    
-    .no-results {
-      text-align: center;
-      padding: 1rem;
-      color: #666;
-      font-style: italic;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
     }
 
     /* --- BOOKMARKS IN HEADER --- */
     .header-bookmarks {
       position: absolute;
-      top: 1rem;
+      top: 1.5rem;
       right: 2rem;
       z-index: 1200;
     }
     
     .bookmark-toggle-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.4);
       color: #fff;
-      padding: 0.6rem 1rem;
-      border-radius: 25px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
       cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
     .bookmark-toggle-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,204,0,0.4);
     }
     
     .bookmark-dropdown {
       position: absolute;
       top: 100%;
       right: 0;
-      margin-top: 0.5rem;
-      background: rgba(30, 60, 114, 0.95);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 1rem;
-      min-width: 280px;
-      max-height: 300px;
+      margin-top: 1rem;
+      background: rgba(30, 60, 114, 0.98);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 1.5rem;
+      min-width: 320px;
+      max-height: 400px;
       overflow-y: auto;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-      transform: translateY(-10px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+      transform: translateY(-20px);
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     
     .bookmark-dropdown.show {
@@ -162,20 +225,25 @@
     }
     
     .bookmark-dropdown h3 {
-      margin: 0 0 1rem 0;
+      margin: 0 0 1.5rem 0;
       color: #ffcc00;
-      font-size: 1rem;
+      font-size: 1.2rem;
       text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 0.8rem;
     }
     
     .bookmark-dropdown .bookmark-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.6rem 0;
+      padding: 0.8rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .bookmark-dropdown .bookmark-item:hover {
+      padding-left: 0.5rem;
     }
     
     .bookmark-dropdown .bookmark-item:last-child {
@@ -186,8 +254,9 @@
       color: #f0f0f0;
       text-decoration: none;
       flex: 1;
-      font-size: 0.9rem;
-      line-height: 1.3;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      transition: color 0.3s ease;
     }
     
     .bookmark-dropdown .bookmark-item a:hover {
@@ -198,23 +267,68 @@
       background: none;
       border: none;
       color: #ffd700;
-      font-size: 1rem;
+      font-size: 1.3rem;
       cursor: pointer;
-      padding: 0.2rem;
-      margin-left: 0.5rem;
-      transition: transform 0.2s;
+      padding: 0.3rem;
+      margin-left: 0.8rem;
+      transition: transform 0.3s ease;
     }
     
     .bookmark-dropdown .bookmark-btn:hover {
-      transform: scale(1.2);
+      transform: scale(1.3) rotate(20deg);
     }
     
     .bookmark-dropdown .empty-bookmarks {
       color: #ccc;
       font-style: italic;
       text-align: center;
-      padding: 1rem 0;
-      font-size: 0.9rem;
+      padding: 1.5rem 0;
+      font-size: 1rem;
+    }
+
+    /* --- DASHBOARD LINK --- */
+    .dashboard-link-container {
+      text-align: center;
+      margin: 1.5rem 0 0.5rem;
+      animation: fadeInUp 1.4s ease;
+    }
+    
+    .dashboard-link {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 25px rgba(238,90,111,0.4);
+      transition: all 0.4s ease;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dashboard-link::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .dashboard-link:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .dashboard-link:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(238,90,111,0.6);
     }
 
     /* --- SIDEBAR --- */
@@ -223,141 +337,261 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 300px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      padding: 2rem;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+      width: 350px;
+      background: linear-gradient(180deg, rgba(30,60,114,0.98), rgba(42,82,152,0.98));
+      backdrop-filter: blur(20px);
+      padding: 2.5rem;
+      box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
       transform: translateX(-100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       z-index: 1000;
       color: #fff;
       overflow-y: auto;
     }
+    
     .sidebar::-webkit-scrollbar {
-      width: 8px;
+      width: 10px;
     }
+    
     .sidebar::-webkit-scrollbar-thumb {
-      background: #2a5298;
-      border-radius: 4px;
+      background: linear-gradient(180deg, #ffcc00, #ff6b6b);
+      border-radius: 10px;
     }
+    
     .sidebar::-webkit-scrollbar-thumb:hover {
-      background: #1e3c72;
+      background: linear-gradient(180deg, #ff6b6b, #ffcc00);
     }
+    
     .sidebar.active {
       transform: translateX(0);
     }
+    
     .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.8rem;
       cursor: pointer;
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 1.5rem;
+      right: 1.5rem;
       color: #fff;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .close-btn:hover {
+      background: rgba(255,0,0,0.6);
+      transform: rotate(90deg) scale(1.1);
+    }
+    
     .sidebar nav ul {
       list-style: none;
       padding: 0;
-      margin: 2rem 0 0;
+      margin: 3rem 0 0;
     }
+    
     .sidebar nav ul li {
-      margin: 1rem 0;
+      margin: 1.2rem 0;
     }
+    
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1.2rem 0;
+      padding: 0.8rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .nav-item:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateX(10px);
+    }
+    
     .sidebar nav ul li a {
       text-decoration: none;
       color: #f0f0f0;
-      font-weight: 500;
-      font-size: 1.1rem;
-      transition: color 0.3s, transform 0.3s;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      flex: 1;
     }
+    
     .sidebar nav ul li a:hover {
       color: #ffcc00;
-      transform: translateX(5px);
+    }
+    
+    .bookmark-btn {
+      background: none;
+      border: none;
+      color: #ffcc00;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.3rem;
+      margin-left: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .bookmark-btn:hover {
+      transform: scale(1.3) rotate(20deg);
+    }
+    
+    .bookmark-btn.bookmarked {
+      color: #ffd700;
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
 
     /* --- MAIN CONTENT --- */
     .dashboard {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 3rem 2rem;
+      max-width: 1300px;
       margin: auto;
       margin-top: 0;
     }
+    
     .book-box {
-      background: #f7f7f9;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      backdrop-filter: blur(10px);
       padding: 0;
-      border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
+      transform: translateY(50px) scale(0.9);
+      animation: bookAppear 0.8s forwards;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      border: 2px solid rgba(255,255,255,0.1);
     }
-    .book-box:nth-child(1) { animation-delay: 0.1s; }
-    .book-box:nth-child(2) { animation-delay: 0.2s; }
-    .book-box:nth-child(3) { animation-delay: 0.3s; }
+    
+    @keyframes bookAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .book-box:nth-child(1) { 
+      animation-delay: 0.2s;
+      border-top: 4px solid #2563eb;
+    }
+    .book-box:nth-child(2) { 
+      animation-delay: 0.4s;
+      border-top: 4px solid #16a34a;
+    }
+    .book-box:nth-child(3) { 
+      animation-delay: 0.6s;
+      border-top: 4px solid #ea580c;
+    }
+    
+    .book-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .book-box:hover::before {
+      opacity: 1;
+      animation: rotate 4s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
     
     .book-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
     
     .book-header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, rgba(30,60,114,0.9), rgba(42,82,152,0.9));
       color: white;
-      padding: 1rem;
+      padding: 1.5rem;
       text-align: center;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .book-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #16a34a, #ea580c);
     }
     
     .book-header h3 {
       margin: 0;
-      font-size: 1.3rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
+      animation: fadeInDown 0.8s ease;
     }
     
     .book-body {
-      padding: 1.5rem;
+      padding: 2rem;
       flex: 1;
       text-align: center;
+      background: rgba(255,255,255,0.05);
     }
     
     .book-body h2 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.3rem;
-      color: #1e3c72;
-      line-height: 1.3;
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      color: #ffcc00;
+      line-height: 1.4;
+      font-weight: 700;
     }
     
     .book-body .edition {
-      font-size: 1rem;
-      color: #2a5298;
-      font-weight: 600;
-      margin: 0.5rem 0;
+      font-size: 1.1rem;
+      color: #7cc2ff;
+      font-weight: 700;
+      margin: 0.8rem 0;
     }
     
     .book-body .publisher {
       font-style: italic;
-      color: #777;
-      font-size: 0.85rem;
-      margin: 0.5rem 0 1rem 0;
+      color: #aaa;
+      font-size: 0.95rem;
+      margin: 0.8rem 0 1.5rem 0;
     }
     
     .book-footer {
-      padding: 1rem;
-      background: #f0f0f0;
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.2);
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
       display: flex;
-      gap: 0.5rem;
+      gap: 1rem;
       justify-content: center;
     }
     
@@ -365,120 +599,113 @@
       background: linear-gradient(135deg, #28a745, #20c997);
       color: #fff;
       border: none;
-      border-radius: 25px;
-      padding: 0.7rem 1.5rem;
-      font-size: 0.95rem;
+      border-radius: 50px;
+      padding: 1rem 2rem;
+      font-size: 1.05rem;
       cursor: pointer;
-      transition: all 0.3s;
-      font-weight: 600;
+      transition: all 0.4s ease;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .open-pdf-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .open-pdf-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
     
     .open-pdf-btn:hover {
       background: linear-gradient(135deg, #20c997, #28a745);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-    }
-    
-    .explore-btn {
-      display: none; /* Hide explore button */
-    }
-    
-    /* Remove old styles that are no longer needed */
-    .book-spine,
-    .book-content,
-    .click-indicator {
-      display: none;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(40, 167, 69, 0.6);
     }
 
     /* --- FOOTER --- */
     footer {
       text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #555;
+      padding: 2rem 1rem;
+      font-size: 1rem;
+      color: #aaa;
+      background: rgba(0,0,0,0.3);
+      margin-top: 3rem;
     }
 
     /* --- BUTTONS --- */
     .open-btn {
       position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background: #1e3c72;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #fff;
-      border: none;
-      border-radius: 25px;
-      padding: 0.8rem 1.2rem;
-      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      padding: 1rem 1.8rem;
+      font-size: 1.1rem;
       cursor: pointer;
       z-index: 1100;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease;
+      font-weight: 700;
     }
+    
     .open-btn:hover {
-      background: #2a5298;
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, #2a5298, #1e3c72);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(255,204,0,0.5);
     }
 
-    /* --- BOOKMARKS --- */
-    .bookmark-section {
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    /* --- ANIMATIONS --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .bookmark-section h3 {
-      margin: 0 0 1rem 0;
-      color: #ffcc00;
-      font-size: 1.1rem;
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .bookmark-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .bookmark-item:last-child {
-      border-bottom: none;
-    }
-    .bookmark-item a {
-      color: #f0f0f0;
-      text-decoration: none;
-      flex: 1;
-    }
-    .bookmark-item a:hover {
-      color: #ffcc00;
-    }
-    .bookmark-btn {
-      background: none;
-      border: none;
-      color: #ffcc00;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.2rem;
-      margin-left: 0.5rem;
-      transition: transform 0.2s;
-    }
-    .bookmark-btn:hover {
-      transform: scale(1.2);
-    }
-    .bookmark-btn.bookmarked {
-      color: #ffd700;
-    }
-    .nav-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 1rem 0;
-    }
-    .nav-item a {
-      flex: 1;
+
+    /* --- NO RESULTS --- */
+    .no-results {
+      text-align: center;
+      padding: 1.5rem;
+      color: #666;
+      font-style: italic;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <header data-aos="fade-down">
     <h1>📊 PM Standards Comparator</h1>
     <p>Explore PMBOK 7, PRINCE2, and ISO Standards</p>
     
@@ -488,7 +715,7 @@
         📌 Bookmarks <span id="bookmarkCount">(0)</span>
       </button>
       <div id="bookmarkDropdown" class="bookmark-dropdown">
-        <h3>📌 Bookmarks</h3>
+        <h3>📌 Your Bookmarks</h3>
         <div id="bookmarksList">
           <div class="empty-bookmarks">No bookmarks yet</div>
         </div>
@@ -496,15 +723,15 @@
     </div>
     
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search topics...">
+      <input type="text" id="searchInput" placeholder="🔍 Search topics...">
       <div id="searchSuggestions" class="search-suggestions">
         <div class="no-results">Start typing to search topics...</div>
       </div>
     </div>
     
-    <!-- Add Dashboard Link -->
-    <div style="text-align: center; margin: 1rem 0;">
-      <a href="dashboard.html" style="background: linear-gradient(135deg, #ff6b6b, #ee5a6f); color: white; padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 12px rgba(238, 90, 111, 0.3); transition: all 0.3s ease;">
+    <!-- Dashboard Link -->
+    <div class="dashboard-link-container">
+      <a href="dashboard.html" class="dashboard-link">
         📊 View Insights Dashboard
       </a>
     </div>
@@ -582,7 +809,7 @@
   <button id="openSidebar" class="open-btn">☰ Topics</button>
 
   <main class="dashboard">
-    <div class="book-box pmbok-book" data-book="pmbok">
+    <div class="book-box pmbok-book" data-book="pmbok" data-aos="zoom-in">
       <div class="book-header">
         <h3>📘 PMBOK 7</h3>
       </div>
@@ -596,7 +823,7 @@
       </div>
     </div>
     
-    <div class="book-box prince2-book" data-book="prince2">
+    <div class="book-box prince2-book" data-book="prince2" data-aos="zoom-in">
       <div class="book-header">
         <h3>📗 PRINCE2</h3>
       </div>
@@ -610,7 +837,7 @@
       </div>
     </div>
     
-    <div class="book-box iso-book" data-book="iso">
+    <div class="book-box iso-book" data-book="iso" data-aos="zoom-in">
       <div class="book-header">
         <h3>📙 ISO 21500</h3>
       </div>
@@ -626,10 +853,58 @@
   </main>
 
   <footer>
-    <!-- <p>© 2025 PM Standards Comparator</p> -->
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
   </footer>
 
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
   <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Initialize Particles.js
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#ffffff',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
+
     // --- BOOKMARK FUNCTIONALITY ---
     let bookmarks = JSON.parse(localStorage.getItem('pmStandardsBookmarks')) || [];
 
@@ -641,7 +916,6 @@
       const bookmarksList = document.getElementById('bookmarksList');
       const bookmarkCount = document.getElementById('bookmarkCount');
       
-      // Update count
       bookmarkCount.textContent = `(${bookmarks.length})`;
       
       if (bookmarks.length === 0) {
@@ -655,7 +929,6 @@
         `).join('');
       }
 
-      // Update bookmark buttons in sidebar
       document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
         const page = btn.getAttribute('data-page');
         const isBookmarked = bookmarks.some(b => b.page === page);
@@ -683,7 +956,6 @@
       updateBookmarkDisplay();
     }
 
-    // --- BOOKMARK DROPDOWN FUNCTIONALITY ---
     const bookmarkToggle = document.getElementById('bookmarkToggle');
     const bookmarkDropdown = document.getElementById('bookmarkDropdown');
 
@@ -692,14 +964,12 @@
       bookmarkDropdown.classList.toggle('show');
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
       if (!bookmarkToggle.contains(e.target) && !bookmarkDropdown.contains(e.target)) {
         bookmarkDropdown.classList.remove('show');
       }
     });
 
-    // Add event listeners to bookmark buttons
     document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -709,15 +979,13 @@
       });
     });
 
-    // Initialize bookmarks display
     updateBookmarkDisplay();
 
-    // --- SEARCH FUNCTIONALITY WITH SUGGESTIONS ---
+    // --- SEARCH FUNCTIONALITY ---
     const searchInput = document.getElementById("searchInput");
     const searchSuggestions = document.getElementById("searchSuggestions");
     const navItems = document.querySelectorAll(".nav-item");
 
-    // Define all topics for search suggestions
     const allTopics = [
       { title: "Introduction & Project Management Frameworks", url: "introduction.html" },
       { title: "Project Governance & Roles", url: "governance.html" },
@@ -741,19 +1009,16 @@
       
       if (filter.length === 0) {
         searchSuggestions.classList.remove('show');
-        // Reset sidebar filter
         navItems.forEach(item => {
           item.style.display = "flex";
         });
         return;
       }
 
-      // Filter topics based on search
       const filteredTopics = allTopics.filter(topic => 
         topic.title.toLowerCase().includes(filter) 
       );
 
-      // Update search suggestions
       if (filteredTopics.length > 0) {
         searchSuggestions.innerHTML = filteredTopics.map(topic => `
           <div class="search-suggestion-item" onclick="goToTopic('${topic.url}')">
@@ -766,7 +1031,6 @@
 
       searchSuggestions.classList.add('show');
 
-      // Also filter sidebar if it's open
       navItems.forEach(item => {
         const link = item.querySelector('a');
         const text = link.textContent.toLowerCase();
@@ -774,18 +1038,15 @@
       });
     });
 
-    // Function to navigate to topic
     function goToTopic(url) {
       window.location.href = url;
     }
 
-    // Close suggestions when clicking outside
     document.addEventListener('click', function(e) {
       if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
         searchSuggestions.classList.remove('show');
       }
       
-      // Close sidebar when clicking outside and search is empty
       if (!sidebar.contains(e.target) && 
           !openSidebar.contains(e.target) && 
           searchInput.value.trim() === '') {
@@ -798,7 +1059,6 @@
     const openSidebar = document.getElementById("openSidebar");
     const closeSidebar = document.getElementById("closeSidebar");
 
-    // Focus search input when sidebar opens
     openSidebar.addEventListener("click", () => {
       sidebar.style.transform = "translateX(0)";
       setTimeout(() => {
@@ -810,7 +1070,7 @@
       sidebar.style.transform = "translateX(-100%)";
     });
 
-    // --- BOOK PDF OPENING FUNCTIONALITY ---
+    // --- BOOK PDF OPENING ---
     function openBookPDF(standard) {
       const bookLinks = {
         'pmbok': {
@@ -829,21 +1089,16 @@
 
       const book = bookLinks[standard];
       if (book) {
-        // Show notification
         showNotification(`Opening ${book.title}...`);
-        
-        // Open PDF directly
         window.open(book.pdf, '_blank');
       }
     }
 
     // --- NOTIFICATION SYSTEM ---
     function showNotification(message) {
-      // Remove any existing notifications
       const existingNotifications = document.querySelectorAll('.notification');
       existingNotifications.forEach(notif => notif.remove());
       
-      // Create notification element
       const notification = document.createElement('div');
       notification.className = 'notification';
       notification.textContent = message;
@@ -853,37 +1108,35 @@
         right: 20px;
         background: linear-gradient(135deg, #1e3c72, #2a5298);
         color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        padding: 1.2rem 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         z-index: 2000;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 1.05rem;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       `;
       
       document.body.appendChild(notification);
       
-      // Animate in
       setTimeout(() => {
         notification.style.transform = 'translateX(0)';
       }, 100);
       
-      // Remove after 3 seconds
       setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
           if (document.body.contains(notification)) {
             document.body.removeChild(notification);
           }
-        }, 300);
+        }, 500);
       }, 3000);
     }
 
     // --- BOOK INTERACTION ---
     document.querySelectorAll('.book-box').forEach(book => {
       book.addEventListener('click', function(e) {
-        // Prevent opening PDF when clicking explore button
         if (e.target.classList.contains('explore-btn')) {
           return;
         }
@@ -894,10 +1147,8 @@
         }
       });
       
-      // Add cursor pointer and hover effect
       book.style.cursor = 'pointer';
       
-      // Add title attribute for better UX
       const bookType = book.getAttribute('data-book');
       if (bookType) {
         const titles = {
@@ -908,17 +1159,6 @@
         book.title = titles[bookType];
       }
     });
-
-    // --- BOOK EXPLORATION FUNCTIONALITY ---
-    function exploreStandard(standard) {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.style.transform = "translateX(0)";
-      
-      const searchInput = document.getElementById("searchInput");
-      searchInput.focus();
-      
-      showNotification(`Exploring ${standard.toUpperCase()} topics...`);
-    }
   </script>
 </body>
 </html>

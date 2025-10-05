@@ -5,179 +5,164 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resource & Cost Management - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .comparison-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .standard-column {
-      background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    
-    .pmbok-column { border-left: 4px solid #2563eb; }
-    .prince2-column { border-left: 4px solid #16a34a; }
-    .iso-column { border-left: 4px solid #ea580c; }
-    
-    .standard-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .standard-header h3 {
-      margin: 0 0 0 0.5rem;
-      color: var(--accent);
-    }
-    
-    .key-points {
-      margin: 1rem 0;
-    }
-    
-    .key-points h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .key-points ul {
-      margin-left: 1rem;
-      color: var(--text);
-    }
-    
-    .comparison-summary {
-      background: var(--highlight-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>💰 Resource & Cost Management</h1>
-    <p>Human, physical, financial resources; budgeting and cost control across standards</p>
+    <p>Resource allocation, budgeting, and cost control across standards</p>
   </header>
 
   <main>
+    <div class="hero-section" data-aos="zoom-in">
+      <h2>📊 Optimizing Resources</h2>
+      <p>Exploring how PMBOK 7, PRINCE2, and ISO 21500 approach resource planning, cost estimation, budgeting, and financial control throughout the project</p>
+    </div>
+
+    <!-- Topic Image -->
+    <div class="topic-image" data-aos="fade-up">
+      <span class="icon-large">💰</span>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PMBOK Resource & Cost Management</span>
+          <span>89%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="89%">89%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PRINCE2 Financial Controls</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="85%">85%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>ISO Resource & Cost Processes</span>
+          <span>83%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="83%">83%</div>
+        </div>
+      </div>
+    </div>
+
     <div class="comparison-container">
-      <div class="standard-column pmbok-column">
+      <div class="standard-column pmbok-column" data-aos="fade-right" data-aos-delay="200">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📘</span>
+          <span style="font-size: 3rem;">📘</span>
           <h3>PMBOK 7 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Resource planning across performance domains</li>
-            <li>Team development and management focus</li>
-            <li>Cost baseline and control integration</li>
+            <li>Resource and cost within planning domain</li>
+            <li>Earned Value Management (EVM)</li>
+            <li>Cost baseline and budget control</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Performance domain resource integration</li>
-            <li>Team leadership and development emphasis</li>
-            <li>Value-driven resource allocation</li>
+            <li>Bottom-up and parametric estimation</li>
+            <li>Resource leveling and smoothing</li>
+            <li>Three-point cost estimation</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column prince2-column">
+      <div class="standard-column prince2-column" data-aos="fade-up" data-aos-delay="300">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📗</span>
+          <span style="font-size: 3rem;">📗</span>
           <h3>PRINCE2 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Resource management through planning hierarchy</li>
-            <li>Role-based resource assignment</li>
-            <li>Tolerance-based cost control</li>
+            <li>Cost as part of business case theme</li>
+            <li>Stage-based budget allocation</li>
+            <li>Cost tolerance management</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Tolerance-based resource control</li>
-            <li>Defined role resource responsibilities</li>
-            <li>Stage-gate resource authorization</li>
+            <li>Stage budget authorization</li>
+            <li>Exception-based cost reporting</li>
+            <li>Benefits vs. cost tracking</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column iso-column">
+      <div class="standard-column iso-column" data-aos="fade-left" data-aos-delay="400">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📙</span>
+          <span style="font-size: 3rem;">📙</span>
           <h3>ISO 21500 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Systematic resource identification and allocation</li>
-            <li>Organizational resource integration</li>
-            <li>Governance-aligned cost monitoring</li>
+            <li>Resource and cost subject groups</li>
+            <li>Organizational resource standards</li>
+            <li>Budget development and control</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Organizational resource system integration</li>
-            <li>Governance-level resource oversight</li>
-            <li>High-level resource guidance</li>
+            <li>Estimate and control costs processes</li>
+            <li>Establish project team process</li>
+            <li>Portfolio-level resource optimization</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="comparison-summary">
+    <div class="comparison-summary" data-aos="fade-up" data-aos-delay="500">
       <h3>🔍 Comparative Analysis</h3>
       
-      <div class="grid">
+      <div class="summary-grid">
         <div class="box">
           <h4>🤝 Similarities</h4>
           <ul>
-            <li>All require structured resource planning and cost control</li>
-            <li>Resource integration with scheduling, risk, and scope baselines</li>
-            <li>Human resource development and management emphasis</li>
-            <li>Financial monitoring and control mechanisms</li>
+            <li>All require resource planning and allocation</li>
+            <li>Cost estimation and budgeting essential</li>
+            <li>Financial tracking and control mechanisms</li>
+            <li>Resource optimization emphasized</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>⚡ Key Differences</h4>
           <ul>
-            <li><strong>Techniques:</strong> PMBOK (detailed EVM), PRINCE2 (tolerances), ISO (governance)</li>
-            <li><strong>Focus:</strong> PMBOK (team development), PRINCE2 (roles), ISO (organizational)</li>
-            <li><strong>Control:</strong> PMBOK (baselines), PRINCE2 (exceptions), ISO (systematic)</li>
+            <li><strong>Techniques:</strong> PMBOK (EVM, reserves), PRINCE2 (tolerances), ISO (organizational standards)</li>
+            <li><strong>Control:</strong> PMBOK (detailed tracking), PRINCE2 (exception-based), ISO (process-driven)</li>
+            <li><strong>Focus:</strong> PMBOK (performance measurement), PRINCE2 (business justification), ISO (systematic)</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>🎯 Best Use Cases</h4>
           <ul>
-            <li><strong>PMBOK:</strong> Complex resource and cost management</li>
-            <li><strong>PRINCE2:</strong> Role-based resource control</li>
-            <li><strong>ISO:</strong> Organizational resource standardization</li>
+            <li><strong>PMBOK:</strong> Complex projects requiring detailed cost control</li>
+            <li><strong>PRINCE2:</strong> Business case-driven projects with stage budgets</li>
+            <li><strong>ISO:</strong> Organizations with standardized resource processes</li>
           </ul>
         </div>
       </div>
@@ -187,5 +172,49 @@
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+          const width = fill.getAttribute('data-width');
+          fill.style.width = width;
+        });
+      }, 500);
+    });
+
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>

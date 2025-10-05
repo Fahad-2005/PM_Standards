@@ -3,181 +3,166 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Project Life Cycle & Development Approaches - PM Standards Comparator</title>
+  <title>Project Life Cycle & Development - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .comparison-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .standard-column {
-      background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    
-    .pmbok-column { border-left: 4px solid #2563eb; }
-    .prince2-column { border-left: 4px solid #16a34a; }
-    .iso-column { border-left: 4px solid #ea580c; }
-    
-    .standard-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .standard-header h3 {
-      margin: 0 0 0 0.5rem;
-      color: var(--accent);
-    }
-    
-    .key-points {
-      margin: 1rem 0;
-    }
-    
-    .key-points h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .key-points ul {
-      margin-left: 1rem;
-      color: var(--text);
-    }
-    
-    .comparison-summary {
-      background: var(--highlight-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>🔄 Project Life Cycle & Development Approaches</h1>
-    <p>Comparing predictive, agile, hybrid approaches and how phases/stages are treated</p>
+  <header data-aos="fade-down">
+    <h1>🔄 Project Life Cycle & Development</h1>
+    <p>Phases, stages, and development approaches across standards</p>
   </header>
 
   <main>
+    <div class="hero-section" data-aos="zoom-in">
+      <h2>🌀 Project Progression</h2>
+      <p>Examining how PMBOK 7, PRINCE2, and ISO 21500 structure project lifecycles, from initiation through closure, and their support for different development approaches</p>
+    </div>
+
+    <!-- Topic Image -->
+    <div class="topic-image" data-aos="fade-up">
+      <span class="icon-large">🔄</span>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PMBOK Lifecycle Flexibility</span>
+          <span>92%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="92%">92%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PRINCE2 Stage-Based Structure</span>
+          <span>88%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="88%">88%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>ISO Process Group Approach</span>
+          <span>82%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="82%">82%</div>
+        </div>
+      </div>
+    </div>
+
     <div class="comparison-container">
-      <div class="standard-column pmbok-column">
+      <div class="standard-column pmbok-column" data-aos="fade-right" data-aos-delay="200">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📘</span>
+          <span style="font-size: 3rem;">📘</span>
           <h3>PMBOK 7 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Lifecycle flexibility across domains</li>
-            <li>Value-driven development approach</li>
-            <li>Adaptive and predictive integration</li>
+            <li>Flexible lifecycle selection</li>
+            <li>Supports predictive, iterative, and adaptive</li>
+            <li>Development approach agnostic</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Performance domain integration</li>
-            <li>Principle-based lifecycle selection</li>
-            <li>Value delivery optimization</li>
+            <li>Performance domains across lifecycle</li>
+            <li>Hybrid approach enablement</li>
+            <li>Continuous delivery emphasis</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column prince2-column">
+      <div class="standard-column prince2-column" data-aos="fade-up" data-aos-delay="300">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📗</span>
+          <span style="font-size: 3rem;">📗</span>
           <h3>PRINCE2 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Stage-based project control</li>
-            <li>Product-driven delivery focus</li>
-            <li>Controlled stage boundaries</li>
+            <li>Structured stage-based progression</li>
+            <li>Management stages with gates</li>
+            <li>Controlled phase transitions</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Mandatory stage structure</li>
-            <li>Product-based planning</li>
-            <li>Exception-based control</li>
+            <li>Pre-project and initiation stages</li>
+            <li>Stage boundary reviews</li>
+            <li>Product-based planning per stage</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column iso-column">
+      <div class="standard-column iso-column" data-aos="fade-left" data-aos-delay="400">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📙</span>
+          <span style="font-size: 3rem;">📙</span>
           <h3>ISO 21500 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Generic lifecycle framework</li>
-            <li>Organizational context alignment</li>
-            <li>Governance-driven phases</li>
+            <li>Process group framework</li>
+            <li>Phase-independent processes</li>
+            <li>Organizational lifecycle integration</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>High-level lifecycle guidance</li>
-            <li>Organizational governance link</li>
-            <li>Portfolio/programme integration</li>
+            <li>High-level process groups</li>
+            <li>Organization-defined phases</li>
+            <li>Programme/portfolio alignment</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="comparison-summary">
+    <div class="comparison-summary" data-aos="fade-up" data-aos-delay="500">
       <h3>🔍 Comparative Analysis</h3>
       
-      <div class="grid">
+      <div class="summary-grid">
         <div class="box">
           <h4>🤝 Similarities</h4>
           <ul>
-            <li>All recognize multiple lifecycle approaches</li>
-            <li>Phase boundaries and governance checkpoints</li>
-            <li>Context-based lifecycle selection</li>
-            <li>Control and review mechanisms</li>
+            <li>All recognize distinct project phases</li>
+            <li>Progressive elaboration throughout lifecycle</li>
+            <li>Transition points and decision gates</li>
+            <li>Stakeholder involvement across phases</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>⚡ Key Differences</h4>
           <ul>
-            <li><strong>Structure:</strong> PMBOK (flexible), PRINCE2 (stage-based), ISO (generic)</li>
-            <li><strong>Focus:</strong> PMBOK (value), PRINCE2 (products), ISO (governance)</li>
-            <li><strong>Approach:</strong> PMBOK (adaptive), PRINCE2 (controlled), ISO (organizational)</li>
+            <li><strong>Structure:</strong> PMBOK (flexible), PRINCE2 (stage-based), ISO (process groups)</li>
+            <li><strong>Approach:</strong> PMBOK (method agnostic), PRINCE2 (prescriptive stages), ISO (framework)</li>
+            <li><strong>Flexibility:</strong> PMBOK (high), PRINCE2 (moderate), ISO (organizational)</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>🎯 Best Use Cases</h4>
           <ul>
-            <li><strong>PMBOK:</strong> Flexible, value-driven projects</li>
-            <li><strong>PRINCE2:</strong> Controlled, product-focused projects</li>
-            <li><strong>ISO:</strong> Organizational standardization</li>
+            <li><strong>PMBOK:</strong> Projects needing flexible lifecycle approaches</li>
+            <li><strong>PRINCE2:</strong> Structured environments with formal stage gates</li>
+            <li><strong>ISO:</strong> Organizations with established process frameworks</li>
           </ul>
         </div>
       </div>
@@ -187,5 +172,49 @@
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+          const width = fill.getAttribute('data-width');
+          fill.style.width = width;
+        });
+      }, 500);
+    });
+
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>

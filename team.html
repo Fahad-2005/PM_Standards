@@ -5,71 +5,62 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Team Management, Leadership & Culture - PM Standards Comparator</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .comparison-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .standard-column {
-      background: var(--card-surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--glass-stroke);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    
-    .pmbok-column { border-left: 4px solid #2563eb; }
-    .prince2-column { border-left: 4px solid #16a34a; }
-    .iso-column { border-left: 4px solid #ea580c; }
-    
-    .standard-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .standard-header h3 {
-      margin: 0 0 0 0.5rem;
-      color: var(--accent);
-    }
-    
-    .key-points {
-      margin: 1rem 0;
-    }
-    
-    .key-points h4 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .key-points ul {
-      margin-left: 1rem;
-      color: var(--text);
-    }
-    
-    .comparison-summary {
-      background: var(--highlight-bg);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      border-left: 4px solid var(--accent);
-    }
-  </style>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>👥 Team Management, Leadership & Culture</h1>
-    <p>Team composition, leadership styles, and high-performance culture across standards</p>
+    <p>Building, leading, and empowering high-performing teams across standards</p>
   </header>
 
   <main>
+    <div class="hero-section" data-aos="zoom-in">
+      <h2>🌟 Leading Teams to Success</h2>
+      <p>Exploring how PMBOK 7, PRINCE2, and ISO 21500 approach team development, leadership styles, organizational culture, and creating collaborative environments</p>
+    </div>
+
+    <!-- Topic Image -->
+    <div class="topic-image" data-aos="fade-up">
+      <span class="icon-large">👥</span>
+    </div>
+
+    <!-- Progress Indicators -->
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PMBOK Team Performance Domain</span>
+          <span>92%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="92%">92%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>PRINCE2 Organization Theme</span>
+          <span>88%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="88%">88%</div>
+        </div>
+      </div>
+      
+      <div class="progress-indicator">
+        <div class="progress-label">
+          <span>ISO Resource Management</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%;" data-width="85%">85%</div>
+        </div>
+      </div>
+    </div>
+
     <div class="comparison-container">
-      <div class="standard-column pmbok-column">
+      <div class="standard-column pmbok-column" data-aos="fade-right" data-aos-delay="200">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📘</span>
+          <span style="font-size: 3rem;">📘</span>
           <h3>PMBOK 7 Approach</h3>
         </div>
         
@@ -77,107 +68,101 @@
           <h4>Core Philosophy</h4>
           <ul>
             <li>Team performance domain emphasis</li>
-            <li>Servant leadership and collaboration</li>
-            <li>High-performance culture building</li>
+            <li>Servant leadership approach</li>
+            <li>Self-organizing teams support</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Performance domain team integration</li>
-            <li>Servant leadership emphasis</li>
-            <li>Adaptive team management approaches</li>
+            <li>Team development stages (Tuckman)</li>
+            <li>Emotional intelligence focus</li>
+            <li>Distributed and virtual teams</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column prince2-column">
+      <div class="standard-column prince2-column" data-aos="fade-up" data-aos-delay="300">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📗</span>
+          <span style="font-size: 3rem;">📗</span>
           <h3>PRINCE2 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Predefined roles and responsibilities</li>
-            <li>Governance-driven team structure</li>
-            <li>Clear authority and accountability</li>
+            <li>Organization theme - defined roles</li>
+            <li>Clear role responsibilities</li>
+            <li>Three levels of management</li>
           </ul>
         </div>
-        
-        
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
-            <li>Mandatory role structure</li>
-            <li>Governance-embedded leadership</li>
-            <li>Formal authority delegation</li>
+            <li>Project Board, Manager, Team Manager</li>
+            <li>Accountability and authority clarity</li>
+            <li>Role description documentation</li>
           </ul>
         </div>
       </div>
 
-      <div class="standard-column iso-column">
+      <div class="standard-column iso-column" data-aos="fade-left" data-aos-delay="400">
         <div class="standard-header">
-          <span style="font-size: 2rem;">📙</span>
+          <span style="font-size: 3rem;">📙</span>
           <h3>ISO 21500 Approach</h3>
         </div>
         
         <div class="key-points">
           <h4>Core Philosophy</h4>
           <ul>
-            <li>Role clarity and competent leadership</li>
-            <li>Collaboration and organizational alignment</li>
-            <li>Project culture linked to organizational values</li>
+            <li>Establish project team process</li>
+            <li>Develop project team</li>
+            <li>Organizational resource policies</li>
           </ul>
         </div>
-        
-       
         
         <div class="key-points">
           <h4>Unique Elements</h4>
           <ul>
+            <li>Resource subject group processes</li>
             <li>Organizational culture alignment</li>
-            <li>Competency-based approach</li>
-            <li>High-level leadership guidance</li>
+            <li>Competency and training focus</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="comparison-summary">
+    <div class="comparison-summary" data-aos="fade-up" data-aos-delay="500">
       <h3>🔍 Comparative Analysis</h3>
       
-      <div class="grid">
+      <div class="summary-grid">
         <div class="box">
           <h4>🤝 Similarities</h4>
           <ul>
             <li>All emphasize clear roles and responsibilities</li>
-            <li>Leadership is critical to project success in all frameworks</li>
-            <li>Team communication and collaboration requirements</li>
-            <li>Authority and accountability clarity</li>
+            <li>Team development and competency building</li>
+            <li>Leadership and motivation importance</li>
+            <li>Collaborative culture promotion</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>⚡ Key Differences</h4>
           <ul>
-            <li><strong>Leadership:</strong> PMBOK (servant), PRINCE2 (governance), ISO (competency)</li>
-            <li><strong>Structure:</strong> PMBOK (flexible), PRINCE2 (formal roles), ISO (organizational)</li>
-            <li><strong>Culture:</strong> PMBOK (performance), PRINCE2 (governance), ISO (alignment)</li>
+            <li><strong>Structure:</strong> PMBOK (flexible), PRINCE2 (prescriptive roles), ISO (organizational)</li>
+            <li><strong>Leadership:</strong> PMBOK (servant leadership), PRINCE2 (hierarchical), ISO (competency-based)</li>
+            <li><strong>Focus:</strong> PMBOK (performance), PRINCE2 (accountability), ISO (standards)</li>
           </ul>
         </div>
         
         <div class="box">
           <h4>🎯 Best Use Cases</h4>
           <ul>
-            <li><strong>PMBOK:</strong> Flexible, collaborative team environments</li>
-            <li><strong>PRINCE2:</strong> Formal governance and role structures</li>
-            <li><strong>ISO:</strong> Organizational culture alignment focus</li>
+            <li><strong>PMBOK:</strong> Adaptive teams, agile environments</li>
+            <li><strong>PRINCE2:</strong> Formal organizations with clear hierarchies</li>
+            <li><strong>ISO:</strong> Large enterprises with standardized HR processes</li>
           </ul>
         </div>
       </div>
@@ -187,5 +172,49 @@
       <a href="home.html" class="back-btn">← Back to Home</a>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 PM Standards Comparator | Built with 💙</p>
+  </footer>
+
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    // Animate progress bars on load
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.progress-fill').forEach(fill => {
+          const width = fill.getAttribute('data-width');
+          fill.style.width = width;
+        });
+      }, 500);
+    });
+
+    // Scroll animation observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
