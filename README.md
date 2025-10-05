@@ -2,25 +2,26 @@
 
 A web application for comparing PMBOK 7, PRINCE2, and ISO 21500 project management standards.
 
-##  Overview
+#  Overview
 
 Interactive platform for project managers, students, and researchers to explore and compare three major PM standards across 15 key topics.
 
-##  Standards Included
+#  Standards Included
 
-- ** PMBOK 7** - Principle-based, performance domain approach (PMI)
-- ** PRINCE2** - Process-based, stage-gate methodology (AXELOS) 
-- ** ISO 21500** - High-level organizational guidelines (ISO)
+-  PMBOK 7 - Principle-based, performance domain approach (PMI)
+-  PRINCE2 - Process-based, stage-gate methodology (AXELOS) 
+-  ISO 21500/21500 - High-level organizational guidelines (ISO)
 
-##  Key Features
+# Key Features
 
-- ** PDF Access** - Direct links to complete standard documents
-- ** Smart Search** - Real-time topic search with suggestions
-- ** Bookmarks** - Save and organize favorite topics
-- ** Dashboard** - Comprehensive analysis with similarity matrices
+-  PDF Access - Direct links to complete standard documents
+-  Smart Search - Real-time topic search with suggestions
+-  Bookmarks - Save and organize favorite topics
+-  Dashboard - Analysis with similarity matrices and tables,graphs and pie chart.
+-  UI/UX - Modern and high quality UI with animations,gradient colors and hover effects.
 
 
-##  Comparison Topics (15)
+# Comparison Topics (15)
 
 1. Introduction & Frameworks
 2. Governance & Roles  
@@ -38,31 +39,8 @@ Interactive platform for project managers, students, and researchers to explore 
 14. Stakeholder Engagement
 15. Team & Leadership
 
-##  Usage
 
-1. Open `home.html` in browser
-2. Use ** Bookmarks** for saved topics
-3. Click ** Topics** to browse comparisons  
-4. Search for specific topics instantly
-5. View ** Dashboard** for insights
 
-##  Structure
 
-```
-PM_Standards/
-├── home.html              # Main page
-├── dashboard.html          # Analytics
-├── style.css              # Styling
-├── book/                  # PDF files
-└── [15 topic pages]       # Detailed comparisons
-```
 
-##  Perfect For
-
-- **Students** learning PM methodologies
-- **Professionals** selecting project approaches
-- **Researchers** analyzing standard differences
-- **Organizations** evaluating framework fit
-
----
 
