@@ -802,6 +802,24 @@
           <a href="team.html">Team Management, Leadership & Culture</a>
           <button class="bookmark-btn" data-page="team.html" data-title="Team Management, Leadership & Culture">☆</button>
         </li>
+        <!-- Sample Projects Section -->
+<li style="margin-top: 2rem;">
+  <div style="color: #ffcc00; font-weight: 700; font-size: 1.1rem; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,204,0,0.3);">
+    📁 Sample Projects
+  </div>
+</li>
+<li class="nav-item">
+  <a href="custom-software-project.html">📱 Custom Software Development</a>
+  <button class="bookmark-btn" data-page="custom-software-project.html" data-title="Custom Software Development Project">☆</button>
+</li>
+<li class="nav-item">
+  <a href="enterprise-system-project.html">🏢 Enterprise System Implementation</a>
+  <button class="bookmark-btn" data-page="enterprise-system-project.html" data-title="Enterprise System Implementation">☆</button>
+</li>
+<li class="nav-item">
+  <a href="infrastructure-project.html">🏗️ Infrastructure Upgrade</a>
+  <button class="bookmark-btn" data-page="infrastructure-project.html" data-title="Infrastructure Upgrade Project">☆</button>
+</li>
       </ul>
     </nav>
   </aside>
@@ -987,22 +1005,26 @@
     const navItems = document.querySelectorAll(".nav-item");
 
     const allTopics = [
-      { title: "Introduction & Project Management Frameworks", url: "introduction.html" },
-      { title: "Project Governance & Roles", url: "governance.html" },
-      { title: "Tailoring & Contextualization", url: "tailoring.html" },
-      { title: "Business Case & Benefits Realization", url: "businesscase.html" },
-      { title: "Project Life Cycle & Development", url: "lifecycle.html" },
-      { title: "Planning Approaches & Plan Hierarchy", url: "planning.html" },
-      { title: "Scope & Deliverables Definition", url: "scope.html" },
-      { title: "Scheduling & Time Management", url: "scheduling.html" },
-      { title: "Resource & Cost Management", url: "resources.html" },
-      { title: "Quality Management", url: "quality.html" },
-      { title: "Risk & Issue Management", url: "risk.html" },
-      { title: "Project Closure & Lessons Learned", url: "closure.html" },
-      { title: "Change Control & Configuration Management", url: "change.html" },
-      { title: "Stakeholder Engagement & Communication", url: "stakeholders.html" },
-      { title: "Team Management & Leadership", url: "team.html" }
-    ];
+  { title: "Introduction & Project Management Frameworks", url: "introduction.html" },
+  { title: "Project Governance & Roles", url: "governance.html" },
+  { title: "Tailoring & Contextualization", url: "tailoring.html" },
+  { title: "Business Case & Benefits Realization", url: "businesscase.html" },
+  { title: "Project Life Cycle & Development", url: "lifecycle.html" },
+  { title: "Planning Approaches & Plan Hierarchy", url: "planning.html" },
+  { title: "Scope & Deliverables Definition", url: "scope.html" },
+  { title: "Scheduling & Time Management", url: "scheduling.html" },
+  { title: "Resource & Cost Management", url: "resources.html" },
+  { title: "Quality Management", url: "quality.html" },
+  { title: "Risk & Issue Management", url: "risk.html" },
+  { title: "Project Closure, Lessons Learned & Continual Improvement", url: "closure.html" },
+  { title: "Change Control & Configuration Management", url: "change.html" },
+  { title: "Stakeholder Engagement & Communication", url: "stakeholders.html" },
+  { title: "Team Management, Leadership & Culture", url: "team.html" },
+  // Add sample projects
+  { title: "Custom Software Development Project", url: "custom-software-project.html" },
+  { title: "Enterprise System Implementation", url: "enterprise-system-project.html" },
+  { title: "Infrastructure Upgrade Project", url: "infrastructure-project.html" }
+];
 
     searchInput.addEventListener("input", function () {
       const filter = searchInput.value.toLowerCase().trim();

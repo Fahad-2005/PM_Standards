@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infrastructure Upgrade Project - PM Standards</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* --- PARTICLE BACKGROUND --- */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at top, #1e3c72, #000000);
+    }
+
+    /* --- ANIMATED HEADER --- */
+    header {
+      background: linear-gradient(135deg, rgba(30,60,114,0.95), rgba(42,82,152,0.95));
+      color: #fff;
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      animation: fadeInDown 1s ease;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #fff, #ffcc00, #fff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s ease infinite;
+    }
+    
+    @keyframes gradientText {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    header p {
+      margin: 1rem 0 2rem;
+      font-size: 1.2rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    /* --- USER INFO BAR --- */
+    .user-info-bar {
+      background: rgba(30, 60, 114, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 0.8s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .user-info-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-login, .timestamp {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-login::before, .timestamp::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .user-login:hover::before, .timestamp:hover::before {
+      left: 100%;
+    }
+
+    .user-login:hover, .timestamp:hover {
+      background: rgba(255, 204, 0, 0.2);
+      border-color: rgba(255, 204, 0, 0.5);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+
+    .user-icon, .clock-icon {
+      font-size: 1.2rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-3px);
+      }
+      60% {
+        transform: translateY(-2px);
+      }
+    }
+
+    .user-name, .current-time {
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .user-login:hover .user-name,
+    .timestamp:hover .current-time {
+      color: #ffcc00;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+
+    .current-time {
+      position: relative;
+    }
+
+    .current-time::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      width: 8px;
+      height: 8px;
+      background: #ffcc00;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translateY(-50%) scale(1.3);
+      }
+    }
+
+    /* Project-specific styling with animations */
+    .project-context {
+      background: rgba(255, 204, 0, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      border-left: 4px solid #ffcc00;
+      animation: fadeInUp 1s ease 0.6s both;
+      transition: all 0.3s ease;
+    }
+    
+    .project-context:hover {
+      background: rgba(255, 204, 0, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+    
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      color: #fff;
+    }
+    
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .overview-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      animation: itemAppear 0.8s ease forwards;
+    }
+    
+    .overview-item:nth-child(1) { animation-delay: 0.2s; }
+    .overview-item:nth-child(2) { animation-delay: 0.4s; }
+    .overview-item:nth-child(3) { animation-delay: 0.6s; }
+    .overview-item:nth-child(4) { animation-delay: 0.8s; }
+    
+    @keyframes itemAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .overview-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .overview-item:hover::before {
+      opacity: 1;
+      animation: rotate 4s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .overview-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 204, 0, 0.4);
+      background: rgba(255,255,255,0.15);
+    }
+    
+    .overview-item h3 {
+      color: #ffcc00;
+      margin: 0 0 1rem 0;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    
+    .overview-item:hover h3 {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+    
+    .phase {
+      background: rgba(255,255,255,0.05);
+      margin: 2rem 0;
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 4px solid #ea580c;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    .phase:nth-child(1) { animation-delay: 0.2s; border-left-color: #2563eb; }
+    .phase:nth-child(2) { animation-delay: 0.4s; border-left-color: #16a34a; }
+    .phase:nth-child(3) { animation-delay: 0.6s; border-left-color: #ea580c; }
+    .phase:nth-child(4) { animation-delay: 0.8s; border-left-color: #dc2626; }
+    .phase:nth-child(5) { animation-delay: 1s; border-left-color: #7c3aed; }
+    
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .phase::before {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.8s ease;
+    }
+    
+    .phase:hover::before {
+      left: 100%;
+    }
+    
+    .phase:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .phase h3 {
+      color: #7cc2ff;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+    
+    .phase:hover h3 {
+      color: #ffcc00;
+      transform: scale(1.05);
+    }
+    
+    .phase-content h4 {
+      color: #ffcc00;
+      margin: 1.5rem 0 0.8rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .phase:hover .phase-content h4 {
+      color: #fff;
+    }
+    
+    .phase-content ul {
+      margin: 0.5rem 0 1.5rem 1.5rem;
+    }
+    
+    .phase-content li {
+      margin: 0.5rem 0;
+      line-height: 1.4;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 0.5rem;
+    }
+    
+    .phase-content li::before {
+      content: '▶';
+      position: absolute;
+      left: -1rem;
+      color: #ffcc00;
+      font-size: 0.8rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+    
+    .phase:hover .phase-content li::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .phase-content li:hover {
+      color: #ffcc00;
+      transform: translateX(5px);
+    }
+    
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .role {
+      background: rgba(255,255,255,0.08);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.8) rotateY(20deg);
+      animation: roleAppear 0.8s ease forwards;
+    }
+    
+    .role:nth-child(1) { animation-delay: 0.2s; }
+    .role:nth-child(2) { animation-delay: 0.4s; }
+    .role:nth-child(3) { animation-delay: 0.6s; }
+    .role:nth-child(4) { animation-delay: 0.8s; }
+    .role:nth-child(5) { animation-delay: 1s; }
+    .role:nth-child(6) { animation-delay: 1.2s; }
+    
+    @keyframes roleAppear {
+      to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+      }
+    }
+    
+    .role::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,204,0,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .role:hover::after {
+      left: 100%;
+    }
+    
+    .role:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255,204,0,0.3);
+    }
+    
+    .role h3 {
+      color: #ffcc00;
+      margin: 0 0 1rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .role:hover h3 {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,204,0,0.8);
+      transform: scale(1.1);
+    }
+    
+    .role ul li {
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 1rem;
+    }
+    
+    .role ul li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      color: #7cc2ff;
+      transition: all 0.3s ease;
+    }
+    
+    .role:hover ul li::before {
+      color: #ffcc00;
+      transform: scale(1.3);
+    }
+    
+    .role ul li:hover {
+      color: #ffcc00;
+      transform: translateX(5px);
+    }
+    
+    .standard {
+      background: rgba(255,255,255,0.05);
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: standardAppear 0.8s ease forwards;
+    }
+    
+    .standard:nth-child(1) { animation-delay: 0.2s; }
+    .standard:nth-child(2) { animation-delay: 0.4s; }
+    .standard:nth-child(3) { animation-delay: 0.6s; }
+    
+    @keyframes standardAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .standard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.8s ease;
+    }
+    
+    .standard:hover::before {
+      left: 100%;
+    }
+    
+    .standard:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .standard h3 {
+      margin: 0 0 1rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .standard:hover h3 {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+    
+    .standard ul li {
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 1rem;
+    }
+    
+    .standard ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #7cc2ff;
+      transition: all 0.3s ease;
+    }
+    
+    .standard:hover ul li::before {
+      color: #ffcc00;
+      transform: translateX(5px);
+    }
+    
+    .standard ul li:hover {
+      color: #ffcc00;
+      transform: translateX(10px);
+    }
+    
+    .tailoring-item {
+      background: rgba(255,255,255,0.05);
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(0.95);
+      animation: tailoringAppear 0.8s ease forwards;
+    }
+    
+    .tailoring-item:nth-child(1) { animation-delay: 0.2s; }
+    .tailoring-item:nth-child(2) { animation-delay: 0.4s; }
+    
+    @keyframes tailoringAppear {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .tailoring-item::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,204,0,0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: all 0.6s ease;
+    }
+    
+    .tailoring-item:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .tailoring-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(255,204,0,0.2);
+    }
+    
+    .tailoring-item h3 {
+      color: #ffcc00;
+      margin: 0 0 1rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .tailoring-item:hover h3 {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,204,0,0.8);
+    }
+    
+    .tailoring-item ul li {
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .tailoring-item ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .tailoring-item:hover ul li::before {
+      color: #ffcc00;
+      transform: scale(1.2) rotate(10deg);
+    }
+    
+    .tailoring-item ul li:hover {
+      color: #ffcc00;
+      transform: translateX(8px);
+    }
+    
+    .navigation-footer {
+      display: flex;
+      justify-content: space-between;
+      margin: 3rem 0;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      animation: fadeInUp 1s ease 1.5s both;
+    }
+    
+    .nav-btn {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .nav-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(255,204,0,0.4);
+      background: linear-gradient(135deg, #2a5298, #1e3c72);
+    }
+    
+    body {
+      background: radial-gradient(ellipse at top, #1e3c72, #000000);
+      min-height: 100vh;
+    }
+    
+    section {
+      margin: 3rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: sectionAppear 1s ease forwards;
+    }
+    
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+    section:nth-child(5) { animation-delay: 1s; }
+    
+    @keyframes sectionAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    section h2 {
+      color: #ffcc00;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-bottom: 2px solid rgba(255,204,0,0.3);
+      padding-bottom: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    section h2:hover {
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255,204,0,0.8);
+      transform: scale(1.05);
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ffcc00, #ff6b6b);
+      transform: translateX(-50%);
+      transition: width 0.6s ease;
+    }
+    
+    section h2:hover::after {
+      width: 100%;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .phase h4:hover {
+      animation: pulse 0.6s ease;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .overview-item:hover,
+    .role:hover,
+    .standard:hover,
+    .tailoring-item:hover {
+      box-shadow: 
+        0 0 20px rgba(255,204,0,0.3),
+        0 0 40px rgba(255,204,0,0.2),
+        0 0 60px rgba(255,204,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .user-info-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .user-login, .timestamp {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <header data-aos="fade-down">
+    <h1>🏗️ Infrastructure Upgrade Project</h1>
+    <p>Structured Approach for Critical Infrastructure Implementation</p>
+    <div class="project-context">
+      <strong>Context:</strong> Fixed requirements, 12 months, 15 team members, minimal scope changes
+    </div>
+  </header>
+
+ 
+
+  <main class="content-wrapper">
+    <section class="project-overview">
+      <h2>🎯 Project Overview</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <h3>Objective</h3>
+          <p>Deliver critical infrastructure upgrade with predictable outcomes and minimal operational disruption.</p>
+        </div>
+        <div class="overview-item">
+          <h3>Duration</h3>
+          <p>12 months with sequential phases</p>
+        </div>
+        <div class="overview-item">
+          <h3>Team Size</h3>
+          <p>15 team members with specialized skills</p>
+        </div>
+        <div class="overview-item">
+          <h3>Complexity</h3>
+          <p>Fixed requirements with technical complexity and operational constraints</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-phases">
+      <h2>🔄 Process Phases</h2>
+      
+      <div class="phase">
+        <h3>Phase 1: Project Initiation (1 month)</h3>
+        <div class="phase-content">
+          <h4>Key Activities:</h4>
+          <ul>
+            <li>Infrastructure assessment and baseline establishment</li>
+            <li>Stakeholder identification and requirements confirmation</li>
+            <li>Project charter development</li>
+            <li>Initial risk assessment</li>
+            <li>Team mobilization</li>
+            <li>Procurement planning</li>
+          </ul>
+          
+          <h4>Deliverables:</h4>
+          <ul>
+            <li>Infrastructure Assessment Report</li>
+            <li>Project Charter</li>
+            <li>Stakeholder Register</li>
+            <li>Requirements Specification</li>
+            <li>Risk Register</li>
+            <li>Procurement Strategy</li>
+          </ul>
+          
+          <h4>Decision Gate:</h4>
+          <p><strong>Gate 1:</strong> Project authorization and team confirmation</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 2: Detailed Planning & Design (2 months)</h3>
+        <div class="phase-content">
+          <h4>Key Activities:</h4>
+          <ul>
+            <li>Detailed work breakdown structure creation</li>
+            <li>Technical design and specifications</li>
+            <li>Resource scheduling and allocation</li>
+            <li>Quality assurance planning</li>
+            <li>Safety and compliance planning</li>
+            <li>Vendor selection and contracting</li>
+          </ul>
+          
+          <h4>Deliverables:</h4>
+          <ul>
+            <li>Work Breakdown Structure</li>
+            <li>Master Schedule</li>
+            <li>Technical Design Documents</li>
+            <li>Resource Management Plan</li>
+            <li>Quality Assurance Plan</li>
+            <li>Safety Plan</li>
+            <li>Vendor Contracts</li>
+          </ul>
+          
+          <h4>Decision Gate:</h4>
+          <p><strong>Gate 2:</strong> Design approval and procurement authorization</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 3: Procurement & Preparation (2 months)</h3>
+        <div class="phase-content">
+          <h4>Key Activities:</h4>
+          <ul>
+            <li>Equipment procurement and delivery</li>
+            <li>Site preparation activities</li>
+            <li>Testing environment setup</li>
+            <li>Installation planning</li>
+            <li>Team training and certification</li>
+            <li>Change management preparation</li>
+          </ul>
+          
+          <h4>Deliverables:</h4>
+          <ul>
+            <li>Procured Equipment and Materials</li>
+            <li>Prepared Installation Sites</li>
+            <li>Test Environment</li>
+            <li>Installation Procedures</li>
+            <li>Trained Team Members</li>
+            <li>Change Management Plan</li>
+          </ul>
+          
+          <h4>Decision Gate:</h4>
+          <p><strong>Gate 3:</strong> Installation readiness confirmation</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 4: Implementation & Testing (5 months)</h3>
+        <div class="phase-content">
+          <h4>Key Activities:</h4>
+          <ul>
+            <li>Infrastructure installation</li>
+            <li>System configuration</li>
+            <li>Integration testing</li>
+            <li>Performance testing</li>
+            <li>Security testing</li>
+            <li>User acceptance testing</li>
+            <li>Documentation completion</li>
+          </ul>
+          
+          <h4>Deliverables:</h4>
+          <ul>
+            <li>Installed Infrastructure</li>
+            <li>Configured Systems</li>
+            <li>Test Results and Reports</li>
+            <li>Performance Validation</li>
+            <li>Security Certificates</li>
+            <li>User Acceptance Sign-off</li>
+            <li>Technical Documentation</li>
+          </ul>
+          
+          <h4>Decision Gates:</h4>
+          <p><strong>Gates 4a-4c:</strong> Installation completion, testing approval, and go-live authorization</p>
+        </div>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 5: Deployment & Closure (2 months)</h3>
+        <div class="phase-content">
+          <h4>Key Activities:</h4>
+          <ul>
+            <li>Production cutover</li>
+            <li>Operational support setup</li>
+            <li>Performance monitoring</li>
+            <li>Issue resolution and optimization</li>
+            <li>Knowledge transfer</li>
+            <li>Project closure and handover</li>
+          </ul>
+          
+          <h4>Deliverables:</h4>
+          <ul>
+            <li>Operational Infrastructure</li>
+            <li>Support Procedures</li>
+            <li>Performance Reports</li>
+            <li>Optimization Recommendations</li>
+            <li>Knowledge Transfer Documentation</li>
+            <li>Project Closure Report</li>
+            <li>Lessons Learned</li>
+          </ul>
+          
+          <h4>Decision Gate:</h4>
+          <p><strong>Gate 5:</strong> Project completion and operational handover</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="roles-responsibilities">
+      <h2>👥 Roles & Responsibilities</h2>
+      <div class="roles-grid">
+        <div class="role">
+          <h3>Project Sponsor</h3>
+          <ul>
+            <li>Strategic oversight</li>
+            <li>Resource authorization</li>
+            <li>Stakeholder alignment</li>
+          </ul>
+        </div>
+        <div class="role">
+          <h3>Project Manager</h3>
+          <ul>
+            <li>Project coordination and control</li>
+            <li>Schedule and budget management</li>
+            <li>Risk and issue management</li>
+          </ul>
+        </div>
+        <div class="role">
+          <h3>Technical Lead</h3>
+          <ul>
+            <li>Technical design oversight</li>
+            <li>Installation coordination</li>
+            <li>Quality assurance</li>
+          </ul>
+        </div>
+        <div class="role">
+          <h3>Infrastructure Team</h3>
+          <ul>
+            <li>Installation execution</li>
+            <li>Configuration management</li>
+            <li>Testing support</li>
+          </ul>
+        </div>
+        <div class="role">
+          <h3>Operations Team</h3>
+          <ul>
+            <li>Operational requirements</li>
+            <li>Acceptance testing</li>
+            <li>Support transition</li>
+          </ul>
+        </div>
+        <div class="role">
+          <h3>Procurement Specialist</h3>
+          <ul>
+            <li>Vendor management</li>
+            <li>Contract administration</li>
+            <li>Delivery coordination</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="standards-references">
+      <h2>📚 Standards References</h2>
+      
+      <div class="standard">
+        <h3>🔵 PMBOK 7 References</h3>
+        <ul>
+          <li><strong>Performance Domains:</strong> Planning (detailed upfront planning), Project Work (sequential execution), Delivery (predictable outcomes), Measurement (progress tracking)</li>
+          <li><strong>Development Approach:</strong> Predictive approach suitable for well-defined scope and requirements</li>
+          <li><strong>Tailoring:</strong> Traditional project management with formal documentation and stage gates</li>
+        </ul>
+      </div>
+
+      <div class="standard">
+        <h3>🟢 PRINCE2 References</h3>
+        <ul>
+          <li><strong>Themes:</strong> Business Case (infrastructure benefits), Plans (detailed planning), Quality (technical quality), Risk (technical and operational risks), Change (controlled changes), Progress (milestone tracking)</li>
+          <li><strong>Processes:</strong> Traditional stage-based approach with clear boundaries and deliverables</li>
+          <li><strong>Products:</strong> Emphasis on technical deliverables and documentation</li>
+        </ul>
+      </div>
+
+      <div class="standard">
+        <h3>🟠 ISO 21500 References</h3>
+        <ul>
+          <li><strong>Process Groups:</strong> Sequential implementation with clear phase boundaries</li>
+          <li><strong>Knowledge Areas:</strong> Scope (fixed requirements), Schedule (sequential activities), Cost (budget control), Quality (technical standards), Risk (infrastructure risks), Procurement (vendor management)</li>
+          <li><strong>Governance:</strong> Technical governance with operational oversight</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tailoring-justification">
+      <h2>⚙️ Tailoring Justification</h2>
+      
+      <div class="tailoring-item">
+        <h3>Selected Practices</h3>
+        <ul>
+          <li><strong>Sequential Phases:</strong> Appropriate for infrastructure projects with dependencies</li>
+          <li><strong>Detailed Planning:</strong> Critical for resource coordination and risk mitigation</li>
+          <li><strong>Formal Testing:</strong> Essential for infrastructure reliability and safety</li>
+          <li><strong>Change Control:</strong> Important for budget control and scope management</li>
+          <li><strong>Technical Documentation:</strong> Required for maintenance and support</li>
+          <li><strong>Vendor Management:</strong> Critical for equipment procurement and installation</li>
+        </ul>
+      </div>
+
+      <div class="tailoring-item">
+        <h3>Omitted/Simplified Practices</h3>
+        <ul>
+          <li><strong>Iterative Development:</strong> Not suitable for infrastructure installation</li>
+          <li><strong>Extensive Stakeholder Engagement:</strong> Simplified due to clear operational requirements</li>
+          <li><strong>Continuous Planning:</strong> Replaced with detailed upfront planning</li>
+          <li><strong>Frequent Retrospectives:</strong> Limited to phase-end reviews</li>
+          <li><strong>Adaptive Approaches:</strong> Not appropriate for fixed infrastructure requirements</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="navigation-footer">
+      <a href="enterprise-system-project.html" class="nav-btn">← Previous Project</a>
+      <a href="home.html" class="nav-btn">Back to Home →</a>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#ffffff',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
+
+    function updateClock() {
+      const now = new Date();
+      const utcString = now.toISOString().slice(0, 19).replace('T', ' ');
+      const timeElement = document.querySelector('.current-time');
+      if (timeElement) {
+        timeElement.textContent = utcString;
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    setTimeout(() => {
+      document.querySelector('.user-info-bar').style.boxShadow = '0 2px 20px rgba(255, 204, 0, 0.3)';
+    }, 1000);
+  </script>
+</body>
+</html>
