@@ -803,6 +803,151 @@
         justify-content: center;
       }
     }
+    /* --- SIDEBAR --- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 350px;
+  background: linear-gradient(180deg, rgba(30,60,114,0.98), rgba(42,82,152,0.98));
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+  color: #fff;
+  overflow-y: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffcc00, #ff6b6b);
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6b6b, #ffcc00);
+}
+
+.sidebar.active {
+  transform: translateX(0); /* Show when active */
+}
+
+.close-btn {
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #fff;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: rgba(255,0,0,0.6);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 3rem 0 0;
+}
+
+.sidebar nav ul li {
+  margin: 1.2rem 0;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.2rem 0;
+  padding: 0.8rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.05);
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(10px);
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+  flex: 1;
+}
+
+.sidebar nav ul li a:hover {
+  color: #ffcc00;
+}
+
+.bookmark-btn {
+  background: none;
+  border: none;
+  color: #ffcc00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  margin-left: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.bookmark-btn:hover {
+  transform: scale(1.3) rotate(20deg);
+}
+
+.bookmark-btn.bookmarked {
+  color: #ffd700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* --- HAMBURGER BUTTON --- */
+.open-btn {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  padding: 1rem 1.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 1100;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+  font-weight: 700;
+}
+
+.open-btn:hover {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255,204,0,0.5);
+}
   </style>
 </head>
 <body>
@@ -816,7 +961,104 @@
     </div>
   </header>
 
-
+<button id="openSidebar" class="open-btn">☰ Topics</button>
+<aside id="sidebar" class="sidebar">
+  <button id="closeSidebar" class="close-btn">×</button>
+  
+  <nav>
+    <ul>
+      <li class="nav-item">
+        <a href="home.html">🏠 Home</a>
+      </li>
+      
+      <!-- Sample Projects Section -->
+      <li style="margin-top: 2rem;">
+        <div style="color: #ffcc00; font-weight: 700; font-size: 1.1rem; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,204,0,0.3);">
+          📁 Sample Projects
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="custom-software-project.html">📱 Custom Software Development</a>
+        <button class="bookmark-btn" data-page="custom-software-project.html" data-title="Custom Software Development Project">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="enterprise-system-project.html">🏢 Enterprise System Implementation</a>
+        <button class="bookmark-btn" data-page="enterprise-system-project.html" data-title="Enterprise System Implementation">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="infrastructure-project.html">🏗️ Infrastructure Upgrade</a>
+        <button class="bookmark-btn" data-page="infrastructure-project.html" data-title="Infrastructure Upgrade Project">☆</button>
+      </li>
+      
+      <!-- Standards Topics Section -->
+      <li style="margin-top: 2rem;">
+        <div style="color: #ffcc00; font-weight: 700; font-size: 1.1rem; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,204,0,0.3);">
+          📚 PM Standards Topics
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="introduction.html">Introduction & Project Management Frameworks</a>
+        <button class="bookmark-btn" data-page="introduction.html" data-title="Introduction & Project Management Frameworks">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="governance.html">Project Governance & Roles</a>
+        <button class="bookmark-btn" data-page="governance.html" data-title="Project Governance & Roles">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="tailoring.html">Tailoring & Contextualization</a>
+        <button class="bookmark-btn" data-page="tailoring.html" data-title="Tailoring & Contextualization">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="businesscase.html">Business Case & Benefits Realization</a>
+        <button class="bookmark-btn" data-page="businesscase.html" data-title="Business Case & Benefits Realization">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="lifecycle.html">Project Life Cycle & Development</a>
+        <button class="bookmark-btn" data-page="lifecycle.html" data-title="Project Life Cycle & Development">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="planning.html">Planning Approaches & Plan Hierarchy</a>
+        <button class="bookmark-btn" data-page="planning.html" data-title="Planning Approaches & Plan Hierarchy">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="scope.html">Scope & Deliverables Definition</a>
+        <button class="bookmark-btn" data-page="scope.html" data-title="Scope & Deliverables Definition">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="scheduling.html">Scheduling & Time Management</a>
+        <button class="bookmark-btn" data-page="scheduling.html" data-title="Scheduling & Time Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="resources.html">Resource & Cost Management</a>
+        <button class="bookmark-btn" data-page="resources.html" data-title="Resource & Cost Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="quality.html">Quality Management</a>
+        <button class="bookmark-btn" data-page="quality.html" data-title="Quality Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="risk.html">Risk & Issue Management</a>
+        <button class="bookmark-btn" data-page="risk.html" data-title="Risk & Issue Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="closure.html">Project Closure, Lessons Learned & Continual Improvement</a>
+        <button class="bookmark-btn" data-page="closure.html" data-title="Project Closure, Lessons Learned & Continual Improvement">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="change.html">Change Control & Configuration Management</a>
+        <button class="bookmark-btn" data-page="change.html" data-title="Change Control & Configuration Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="stakeholders.html">Stakeholder Engagement & Communication</a>
+        <button class="bookmark-btn" data-page="stakeholders.html" data-title="Stakeholder Engagement & Communication">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="team.html">Team Management, Leadership & Culture</a>
+        <button class="bookmark-btn" data-page="team.html" data-title="Team Management, Leadership & Culture">☆</button>
+      </li>
+    </ul>
+  </nav>
+</aside>
 
   <main class="content-wrapper">
     <section class="project-overview">
@@ -1144,6 +1386,65 @@
     setTimeout(() => {
       document.querySelector('.user-info-bar').style.boxShadow = '0 2px 20px rgba(255, 204, 0, 0.3)';
     }, 1000);
+    // Sidebar functionality
+const openSidebarBtn = document.getElementById('openSidebar');
+const closeSidebarBtn = document.getElementById('closeSidebar');
+const sidebar = document.getElementById('sidebar');
+
+openSidebarBtn.addEventListener('click', function() {
+  sidebar.classList.add('active');
+});
+
+closeSidebarBtn.addEventListener('click', function() {
+  sidebar.classList.remove('active');
+});
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+  if (!sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+// Bookmark functionality
+let bookmarks = JSON.parse(localStorage.getItem('pmStandardsBookmarks')) || [];
+
+function saveBookmarks() {
+  localStorage.setItem('pmStandardsBookmarks', JSON.stringify(bookmarks));
+}
+
+function updateBookmarkDisplay() {
+  document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+    const page = btn.getAttribute('data-page');
+    const isBookmarked = bookmarks.some(b => b.page === page);
+    btn.textContent = isBookmarked ? '★' : '☆';
+    btn.classList.toggle('bookmarked', isBookmarked);
+  });
+}
+
+function toggleBookmark(page, title) {
+  const existingIndex = bookmarks.findIndex(b => b.page === page);
+  
+  if (existingIndex > -1) {
+    bookmarks.splice(existingIndex, 1);
+  } else {
+    bookmarks.push({ page, title });
+  }
+  
+  saveBookmarks();
+  updateBookmarkDisplay();
+}
+
+document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const page = btn.getAttribute('data-page');
+    const title = btn.getAttribute('data-title');
+    toggleBookmark(page, title);
+  });
+});
+
+updateBookmarkDisplay();
   </script>
 </body>
 </html>

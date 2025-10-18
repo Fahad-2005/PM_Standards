@@ -18,7 +18,104 @@
       <h2>🕐 Managing Time</h2>
       <p>Exploring how PMBOK 7, PRINCE2, and ISO 21500 approach project scheduling, activity sequencing, duration estimation, and timeline control</p>
     </div>
-
+<button id="openSidebar" class="open-btn">☰ Topics</button>
+<aside id="sidebar" class="sidebar">
+  <button id="closeSidebar" class="close-btn">×</button>
+  
+  <nav>
+    <ul>
+      <li class="nav-item">
+        <a href="home.html">🏠 Home</a>
+      </li>
+      
+      <!-- Sample Projects Section -->
+      <li style="margin-top: 2rem;">
+        <div style="color: #ffcc00; font-weight: 700; font-size: 1.1rem; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,204,0,0.3);">
+          📁 Sample Projects
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="custom-software-project.html">📱 Custom Software Development</a>
+        <button class="bookmark-btn" data-page="custom-software-project.html" data-title="Custom Software Development Project">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="enterprise-system-project.html">🏢 Enterprise System Implementation</a>
+        <button class="bookmark-btn" data-page="enterprise-system-project.html" data-title="Enterprise System Implementation">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="infrastructure-project.html">🏗️ Infrastructure Upgrade</a>
+        <button class="bookmark-btn" data-page="infrastructure-project.html" data-title="Infrastructure Upgrade Project">☆</button>
+      </li>
+      
+      <!-- Standards Topics Section -->
+      <li style="margin-top: 2rem;">
+        <div style="color: #ffcc00; font-weight: 700; font-size: 1.1rem; text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,204,0,0.3);">
+          📚 PM Standards Topics
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="introduction.html">Introduction & Project Management Frameworks</a>
+        <button class="bookmark-btn" data-page="introduction.html" data-title="Introduction & Project Management Frameworks">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="governance.html">Project Governance & Roles</a>
+        <button class="bookmark-btn" data-page="governance.html" data-title="Project Governance & Roles">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="tailoring.html">Tailoring & Contextualization</a>
+        <button class="bookmark-btn" data-page="tailoring.html" data-title="Tailoring & Contextualization">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="businesscase.html">Business Case & Benefits Realization</a>
+        <button class="bookmark-btn" data-page="businesscase.html" data-title="Business Case & Benefits Realization">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="lifecycle.html">Project Life Cycle & Development</a>
+        <button class="bookmark-btn" data-page="lifecycle.html" data-title="Project Life Cycle & Development">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="planning.html">Planning Approaches & Plan Hierarchy</a>
+        <button class="bookmark-btn" data-page="planning.html" data-title="Planning Approaches & Plan Hierarchy">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="scope.html">Scope & Deliverables Definition</a>
+        <button class="bookmark-btn" data-page="scope.html" data-title="Scope & Deliverables Definition">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="scheduling.html">Scheduling & Time Management</a>
+        <button class="bookmark-btn" data-page="scheduling.html" data-title="Scheduling & Time Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="resources.html">Resource & Cost Management</a>
+        <button class="bookmark-btn" data-page="resources.html" data-title="Resource & Cost Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="quality.html">Quality Management</a>
+        <button class="bookmark-btn" data-page="quality.html" data-title="Quality Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="risk.html">Risk & Issue Management</a>
+        <button class="bookmark-btn" data-page="risk.html" data-title="Risk & Issue Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="closure.html">Project Closure, Lessons Learned & Continual Improvement</a>
+        <button class="bookmark-btn" data-page="closure.html" data-title="Project Closure, Lessons Learned & Continual Improvement">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="change.html">Change Control & Configuration Management</a>
+        <button class="bookmark-btn" data-page="change.html" data-title="Change Control & Configuration Management">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="stakeholders.html">Stakeholder Engagement & Communication</a>
+        <button class="bookmark-btn" data-page="stakeholders.html" data-title="Stakeholder Engagement & Communication">☆</button>
+      </li>
+      <li class="nav-item">
+        <a href="team.html">Team Management, Leadership & Culture</a>
+        <button class="bookmark-btn" data-page="team.html" data-title="Team Management, Leadership & Culture">☆</button>
+      </li>
+    </ul>
+  </nav>
+</aside>
     <!-- Topic Image -->
     <div class="topic-image" data-aos="fade-up">
       <span class="icon-large">⏰</span>
@@ -215,6 +312,65 @@
     document.querySelectorAll('.fade-in-section').forEach(section => {
       observer.observe(section);
     });
+    // Sidebar functionality
+const openSidebarBtn = document.getElementById('openSidebar');
+const closeSidebarBtn = document.getElementById('closeSidebar');
+const sidebar = document.getElementById('sidebar');
+
+openSidebarBtn.addEventListener('click', function() {
+  sidebar.classList.add('active');
+});
+
+closeSidebarBtn.addEventListener('click', function() {
+  sidebar.classList.remove('active');
+});
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+  if (!sidebar.contains(e.target) && !openSidebarBtn.contains(e.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+// Bookmark functionality
+let bookmarks = JSON.parse(localStorage.getItem('pmStandardsBookmarks')) || [];
+
+function saveBookmarks() {
+  localStorage.setItem('pmStandardsBookmarks', JSON.stringify(bookmarks));
+}
+
+function updateBookmarkDisplay() {
+  document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+    const page = btn.getAttribute('data-page');
+    const isBookmarked = bookmarks.some(b => b.page === page);
+    btn.textContent = isBookmarked ? '★' : '☆';
+    btn.classList.toggle('bookmarked', isBookmarked);
+  });
+}
+
+function toggleBookmark(page, title) {
+  const existingIndex = bookmarks.findIndex(b => b.page === page);
+  
+  if (existingIndex > -1) {
+    bookmarks.splice(existingIndex, 1);
+  } else {
+    bookmarks.push({ page, title });
+  }
+  
+  saveBookmarks();
+  updateBookmarkDisplay();
+}
+
+document.querySelectorAll('.sidebar .bookmark-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const page = btn.getAttribute('data-page');
+    const title = btn.getAttribute('data-title');
+    toggleBookmark(page, title);
+  });
+});
+
+updateBookmarkDisplay();
   </script>
 </body>
 </html>
